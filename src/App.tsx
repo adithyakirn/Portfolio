@@ -1,33 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/all"
+import { ScrollSmoother } from "gsap/all"
+import Header from "./Components/Header/Header"
+import Main from "./Components/Main/Main"
+import { useEffect } from "react"
+import Projects from './Components/Main/Projects/Projects'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+    ScrollSmoother.create({
+      wrapper: "#wrapper",
+      content: "#inner-content",
+    })
+  }, [])
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div id="wrapper" className="container-wrapper min-h-[100vh] !p-[0_20px] sm:!p-[0_40px] max-w-[1400px] m-[0_auto]">
+      <div id="inner-content" className="container">
+      <Header/>
+      <Main/>
+      <div className="section-devider h-[1px] bg-[linear-gradient(90deg,transparent,#333,transparent)] m-[120px_0]"></div>
+      <Projects/>
+    </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
