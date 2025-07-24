@@ -1,49 +1,15 @@
 @import "tailwindcss";
 
-/* @font-face {
-    font-family: "something";
-    src: url("Assets/typora-font-family-1749766073-0 2/Typora-ExtraLight.otf");
-} */
-/* @font-face {
-  font-family: "Black";
-  src: url("./assets/Font/Typora-Black.otf");
-}
-@font-face {
-  font-family: "Bold";
-  src: url("./assets/Font/Typora-Bold.otf");
-}
-@font-face {
-  font-family: "Extra-Bold";
-  src: url("./assets/Font/Typora-ExtraLight.otf");
-}
-@font-face {
-  font-family: "Light";
-  src: url("./assets/Font/Typora-Light.otf");
-}
-@font-face {
-  font-family: "Med";
-  src: url("./assets/Font/Typora-Medium.otf");
-}
-@font-face {
-  font-family: "Semi-Bold";
-  src: url("./assets/Font/Typora-SemiBold.otf");
-}
-@font-face {
-  font-family: "Reg";
-  src: url("./assets/Font/Typora-Regular.otf");
-}
-@font-face {
-  font-family: "Thin";
-  src: url("./assets/Font/Typora-Thin.otf");
-} */
 body{
-  background: #000000;
+  /* background: #282828; */
   /* background-image: url("./assets/background.png"); */
   object-fit: contain;
   font-family: "JetBrains Mono", monospace;
   background-size: cover;
   background-repeat: no-repeat;
-  color: #FFF;
+  /* color: #BABABA !important; */
+  background: black;
+  color: white;
   overflow-x: hidden;
 }
 * {
