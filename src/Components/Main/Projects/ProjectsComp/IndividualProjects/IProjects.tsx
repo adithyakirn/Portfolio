@@ -26,11 +26,7 @@ const IProjects = () => {
     return (
         <>
             {res.map((el) => (
-                <div
-                  className="relative group cursor-pointer"
-                  key={el.id}
-                  onClick={() => window.open(el.link, "_blank")}
-                >
+                <div className="relative group cursor-pointer" key={el.id} onClick={() => window.open(el.link, "_blank")}>
                   <div className="project-card group-hover:blur-sm relative z-10 rounded-[5px] border-1 focus-visible:outline-[-webkit-focus-ring-color_auto_1px] hover:-translate-y-[5px] hover:border-[#333] border-solid border-[rgba(255,255,255,0.05)] bg-[#121212] before:blur-lg p-10 transition-all duration-400 ease-in-out before:content-[''] before:absolute before:top-0 before:-left-[100%] w-full before:h-[2px] before:bg-[linear-gradient(90deg,transparent,#fff,transparent)] before:transition-all before:duration-600 before:ease-in-out h-full">
                     <div className="project-meta flex justify-between items-center mb-5">
                       <div className="projectyear text-[10px] font-bold text-[#555] tracking-[2px] ">{el.year}</div>
@@ -51,16 +47,16 @@ const IProjects = () => {
                     <h3 className="project-title text-[22px] font-bold uppercase tracking-[1px] mb-[16px] text-white">{el.projectname}</h3>
                     <p className="project-description text-[12px] text-[#ccc] leading-[1.7] mb-[24px] ">{el.about}</p>
                     <div className="project-tech flex flex-wrap gap-[8px] ">
-                      {el.languages.map((lang) => {
+                      {el.languages.map((lang, index) => {
                         return (
-                          <span className="tech-tag text-[9px] font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]">{lang}</span>
+                          <span key={`${el.id}-${lang}-${index}`} className="tech-tag text-[9px] font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]">{lang}</span>
                         )
                       })}
                     </div>
                   </div>
                   <div className="absolute top-0 left-0 z-50 w-full h-full opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-300 ease-in-out rounded-md overflow-hidden shadow-lg">
                     <div className="w-[130%] h-[130%] scale-[0.75] origin-top-left">
-                     {el.link ? <iframe src={el.link} title="preview" className="w-full h-full grayscale pointer-events-none" loading="lazy" /> : <span className="text-center absolute h-full w-full flex justify-center items-center text-[#F28F3B] text-[15px]"> Still Under Progress</span>}
+                     {el.link ? <iframe src={el.link} title="preview" className="w-full h-full grayscale pointer-events-none" loading="lazy" /> : <span className="text-center absolute h-full w-full flex justify-center items-center text-[#E3B341] text-[15px]"> Still Under Progress</span>}
                     </div>
                   </div>
                 </div>

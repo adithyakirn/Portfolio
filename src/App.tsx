@@ -1,6 +1,6 @@
 import gsap from 'gsap'
-import { ScrollTrigger } from "gsap/all"
-import { ScrollSmoother } from "gsap/all"
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import ScrollSmoother from 'gsap/ScrollSmoother'
 import Header from "./Components/Header/Header"
 import Main from "./Components/Main/Main"
 import { useEffect } from "react"
@@ -18,12 +18,11 @@ function App() {
   return (
     <>
       <div id="wrapper" className="container-wrapper min-h-[100vh] !p-[0_20px] sm:!p-[0_40px] max-w-[1400px] m-[0_auto]">
-        {/* <div className="absolute inset-0 w-full h-full pointer-events-none z-[1000] animate-grain bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] opacity-10" /> */}
         <div id="inner-content" className="container">
           <Header />
           <Main />
           <div className="section-devider h-[1px] bg-[linear-gradient(90deg,transparent,#333,transparent)] m-[120px_0]"></div>
-          <Sections heading="Projects" sectionNum={1} sectionSub="Selected Works / 2022 — Present" />
+          <Sections heading="Projects" sectionNum={1} sectionSub="Selected Works / 2025 — Present" />
           <Sections heading="Arsenal" sectionNum={2} sectionSub="Technologies & Tools" />
           <Footer />
         </div>
