@@ -74,11 +74,11 @@ const EncryptedWords = () => {
                         )
                     )
                     if (frame >= Math.max(...resolveFrames)) clearInterval(scramble)
-                }, 40)
+                }, 10)
             }
 
             animate()
-            const wordInterval = setInterval(animate, 5000 + i * 200)
+            const wordInterval = setInterval(animate, 1000 + i * 200)
             return () => clearInterval(wordInterval)
         })
     }, [])
