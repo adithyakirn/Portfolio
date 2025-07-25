@@ -5,9 +5,8 @@ const Main = () => {
     <>
       <div className="main-contents flex flex-col flex-1 justify-center md:text-center">
         <div className="hero-text mb-[60px] ">
-          <div className="hero-subtitle text-[14px] font-[300] tracking-[6px] uppercase text-[#666] !mb-[40px]">Portfolio / 2025</div>
-          <h1 className="hero-header text-[clamp(80px,15vw,240px)] font-black leading-[0.85] uppercase -tracking-[4px] mb-[30px] relative">
-            <div className="relative inline-block">FULL STACK DEV</div>
+          <h1 className="hero-header text-[clamp(80px,15vw,240px)] font-black leading-[0.85] -tracking-[4px] mb-[30px] relative">
+            <div className="relative inline-block text-[#F28F3B] ">Fùll Ståçk Dēv</div>
           </h1>
         </div>
       </div>
@@ -15,5 +14,5 @@ const Main = () => {
     </>
   )
 }
-
+// {drop-shadow-[0_0_40px_rgba(242,143,59,0.2)]}
 export default Main

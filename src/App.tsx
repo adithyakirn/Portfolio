@@ -18,6 +18,7 @@ function App() {
   return (
     <>
       <div id="wrapper" className="container-wrapper min-h-[100vh] !p-[0_20px] sm:!p-[0_40px] max-w-[1400px] m-[0_auto]">
+        {/* <div className="absolute inset-0 w-full h-full pointer-events-none z-[1000] animate-grain bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] opacity-10" /> */}
         <div id="inner-content" className="container">
           <Header />
           <Main />

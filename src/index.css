@@ -1,15 +1,20 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "reg";
+  src: url("./assets/Font/LumendDemoRegular-PKpzB.otf");
+}
+@font-face {
+  font-family: "normal";
+  src: url("./assets/Font/AnonymousPro-Regular.ttf");
+}
 body{
-  /* background: #282828; */
-  /* background-image: url("./assets/background.png"); */
   object-fit: contain;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "reg";
   background-size: cover;
   background-repeat: no-repeat;
-  /* color: #BABABA !important; */
-  background: black;
-  color: white;
+  background: #0A0A0A;
+  color: #FAFAFA;
   overflow-x: hidden;
 }
 * {

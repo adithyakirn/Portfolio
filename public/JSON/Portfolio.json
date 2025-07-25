@@ -13,7 +13,7 @@
         "id" : 2,
         "projectname" : "Porsche-Frontend",
         "languages" : ["React", "tailwindcss", "css", "Javascript"],
-        "status" : "live",
+        "status" : "visual & functional",
         "year" : 2025,
         "link" : "https://porsche-homepage-react.vercel.app/",
         "about" : "A modern React-based recreation of Porsche’s homepage UI with responsive layout and animations."
@@ -22,7 +22,7 @@
         "id" : 3,
         "projectname" : "Linear-Clone",
         "languages" : ["Html & Css", "Javascript"],
-        "status" : "live",
+        "status" : "ui/ux",
         "year" : 2025,
         "link" : "https://linearfullyresponsivesite.netlify.app/",
         "about" : "A responsive clone of Linear.app using HTML and CSS. Designed to closely mirror the original layout and styling."
@@ -31,7 +31,7 @@
         "id" : 4,
         "projectname" : "Dribble-Clone",
         "languages" : ["Html & Css", "Javascript"],
-        "status" : "live",
+        "status" : "visual & functional",
         "year" : 2025,
         "link" : "https://dribblefrontend.netlify.app/",
         "about" : "A frontend clone of Dribbble built with HTML, CSS, and JavaScript. Features include a responsive grid layout, interactive shot previews, category filters, and click-based modals—designed to mimic Dribbble’s user experience."
