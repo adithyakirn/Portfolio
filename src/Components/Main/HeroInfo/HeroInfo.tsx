@@ -3,7 +3,7 @@ import HeroAbout from "./HeroComp/HeroAbout"
 const HeroInfo = () => {
     return (
         <>
-            <div className="grid mt-20 gap-[30px] pb-15 md:grid-cols-2 md:gap-10 grid-cols-1  lg:grid-cols-3 lg:gap-15 relative md:text-center">
+            <div className="grid mt-20 gap-[30px] pb-15 md:gap-10 grid-cols-1  md:grid-cols-3 lg:gap-15 relative md:text-center">
                 <HeroAbout head="About" label="Crafting digital experiences through code. Specialized in scalable web applications and innovative user interfaces." />
                 <HeroAbout head="Location" label="Kerala, India" />
                 

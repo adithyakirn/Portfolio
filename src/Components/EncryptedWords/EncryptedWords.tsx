@@ -46,7 +46,7 @@ const EncryptedWords = () => {
     ]
 
     useEffect(() => {
-        const isMobile = window.innerWidth < 765
+        const isMobile = window.innerWidth < 1024
         const positions = isMobile ? mobilePositions : desktopPositions
         const count = isMobile ? 6 : 12
         const selectedPhrases = phrases.slice(0, count)
@@ -56,11 +56,11 @@ const EncryptedWords = () => {
         })
         setItems(initialItems)
 
-        selectedPhrases.forEach((_, i) => {
-            const animate = () => {
+        const animate = (i: number): Promise<void> => {
+            return new Promise(resolve => {
                 const newText = `${phrases[Math.floor(Math.random() * phrases.length)]}`
                 let frame = 0
-                const resolveFrames = newText.split("").map(() => frame + Math.floor(Math.random() * 5) + 1)
+                const resolveFrames = newText.split("").map(() => frame + Math.floor(Math.random() * 8) + 1)
 
                 const scramble = setInterval(() => {
                     frame++
@@ -73,14 +73,24 @@ const EncryptedWords = () => {
                             index === i ? { ...it, display: scrambled } : it
                         )
                     )
-                    if (frame >= Math.max(...resolveFrames)) clearInterval(scramble)
-                }, 10)
-            }
+                    if (frame >= Math.max(...resolveFrames)) {
+                        clearInterval(scramble)
+                        resolve()
+                    }
+                }, 100)
+            })
+        }
 
-            animate()
-            const wordInterval = setInterval(animate, 1000 + i * 200)
-            return () => clearInterval(wordInterval)
-        })
+        const runSequentialAnimations = async () => {
+            while (true) {
+                for (let i = 0; i < selectedPhrases.length; i++) {
+                    await animate(i)
+                    await new Promise(res => setTimeout(res, 220))
+                }
+            }
+        }
+
+        runSequentialAnimations()
     }, [])
     return (
         <div className="absolute inset-0 pointer-events-none z-0">
@@ -88,11 +98,7 @@ const EncryptedWords = () => {
                 <span
                     key={index}
                     className="absolute text-[10px] md:text-sm text-slate-400 opacity-30 font-mono select-none transition-all duration-500"
-                    style={{
-                        top: `${item.top}vh`,
-                        left: `${item.left}vw`,
-                    }}
-                >
+                    style={{top: `${item.top}vh`,left: `${item.left}vw`,}}>
                     {item.display}
                 </span>
             ))}

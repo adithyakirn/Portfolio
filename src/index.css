@@ -16,6 +16,8 @@ body{
   background: #0A0A0A;
   color: #FAFAFA;
   overflow-x: hidden;
+  /* background: #F8F8F8; */
+  /* color: #0B0B0B; */
 }
 * {
     box-sizing: border-box;
