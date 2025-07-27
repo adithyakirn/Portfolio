@@ -6,7 +6,7 @@ gsap.registerPlugin(TextPlugin)
 const Main = () => {
   return (
     <>
-      <div className="main-contents flex flex-col flex-1 justify-center md:text-center">
+      <div className="main-contents flex flex-col flex-1 justify-center md:text-center container m-[0_auto] !p-[0_20px]">
         <EncryptedWords />
         <div className="hero-text mb-[60px] ">
           <h1 id="header" className="hero-header text-center text-[clamp(80px,15vw,240px)] font-black leading-[0.85] -tracking-[4px] mb-[30px] relative">

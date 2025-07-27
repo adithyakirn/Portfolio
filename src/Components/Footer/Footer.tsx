@@ -1,28 +1,38 @@
+import FooterEnd from "./FooterComp/FooterEnd";
+import ScrambleChar from "./Scramble";
+
+
 const Footer = () => {
+  const chars = ["L", "e", "t", "'", "s", "T", "a", "l", "k"];
   return (
     <>
-        <div className="footer p-[120px_0] text-center">
-            <h2 className="footer-title text-[clamp(40px,8vw,100px)] font-black uppercase -tracking-[1px] mb-10 leading-[0.9] text-[#F28F3B]">
-                LET'S BUILD SOMETHING GREAT
-            </h2>
-            <div className="contact-subtitle text-[14px] text-[#666] tracking-[3px] uppercase mb-15 ">Ready to collaborate?</div>
-            <a className="text-[clamp(20px,4vw,40px)] font-normal text-white decoration-[none] border-b-2 border-transparent hover:border-white transition-all ease-in-out duration-400 rounded-[2px]" href="mailto:adithyakirna021@gmail.com">adithyakiran021@gmail.com</a>
-            <div className="social-links mt-15 flex justify-center gap-10 ">
-                <a href="https://github.com/adithyakirn" className="flex items-center justify-center flex-col gap-2 text-[#888] decoration-0 text-[10px] tracking-[2px] uppercase font-normal transition-all duration-300 ease-in hover:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#888] transition-all duration-300 ease-in  hover:text-white group-hover:text-white"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
-                GitHub
-                </a>
-                <a href="https://github.com/adithyakirn" className="flex items-center justify-center flex-col gap-2 text-[#888] decoration-0 text-[10px] tracking-[2px] uppercase font-normal transition-all duration-300 ease-in hover:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#888] transition-all duration-300 ease-in hover:text-white group-hover:text-white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                Linkedin
-                </a>
-            </div>
+      <footer className="overflow-clip relative">
+        <div className="footer-header group z-4 relative">
+          <a href="" className="group hidden lg:flex items-center text-[#F2F2F2] font-[reg] justify-between relative text-[7.2rem] lg:text-[12.15278vw]">
+                <span className="relative -translate-x-[20px] flex overflow-hidden w-[10.70602vw] h-[8.96991vw] items-center justify-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 19"
+                    className="transition-transform  duration-700 ease-[cubic-bezier(.19,1,.22,1)] transform -translate-x-[50rem] group-hover:translate-x-0 lg:h-[8.96991vw] lg:w-[10.70602vw]">
+                    <path d="m10.392 16.88 7.232-7.264-7.264-7.232 1.696-1.76 8.992 8.992-8.96 8.992zM.568 8.304h18.4v2.656H.568z"></path>
+                  </svg>
+                </span>
+            <span className="flex !overflow-hidden relative lg:ml-[-.07em] justify-start transform transition-transform duration-700 ease-[cubic-bezier(.19,1,.22,1)] hover:before:-translate-x-[90rem] group-hover:translate-x-[2vw] before:transition-[all.5s_cubic-bezier(.19,1,.22,1)] before:delay-[.2] before:bg-current before:bottom-[3.13194vw] before:content-[''] before:h-[.1rem] before:left-[.072em] before:absolute before:right-[-.065em] origin-left">
+              <span className="text-splitter--splitted text-splitter group">
+                {chars.map((char, i) => (
+                  <ScrambleChar key={i} char={char} />
+                ))}
+              </span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 19"
+              className="transition-transform duration-700 ease-[cubic-bezier(.19,1,.22,1)] transform group-hover:translate-x-[20rem] lg:h-[8.96991vw] lg:left-[.5787vw] lg:w-[10.70602vw] relative">
+              <path d="m10.392 16.88 7.232-7.264-7.264-7.232 1.696-1.76 8.992 8.992-8.96 8.992zM.568 8.304h18.4v2.656H.568z"></path>
+            </svg>
+            <span className="absolute bottom-[.2rem] left-0 w-full h-[.1rem] bg-current" />
+          </a>
         </div>
-        <div className="p-[40px_0] border-t-[#1a1a1a] border-t-1 text-center">
-            <div className="footer-text text-[10px] text-[#444] tracking-[2px]">© 2025 — Designed &amp; Developed with Precision</div>
-          </div>
+        <FooterEnd/>
+      </footer>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
