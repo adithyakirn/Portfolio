@@ -70,7 +70,7 @@ const IProjects = () => {
     }, [res]);
 
     return (
-        <div className="project-scroll-inner relative" style={{ height: `${res.length * 100}vh` }}>
+        <div className="project-scroll-inner relative !overflow-hidden" style={{ height: `${res.length * 100}vh` }}>
             {res.map((el) => (
                 <div className="panels min-h-screen" key={el.id}>
                     <div className="relative group h-100 cursor-pointer" onClick={() => window.open(el.link, "_blank")}>
@@ -96,7 +96,7 @@ const IProjects = () => {
                                     <span key={`${el.id}-${lang}-${index}`} className="tech-tag text-[9px] font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]">{lang}</span>))}
                             </div>
                         </div>
-                        <div className="absolute top-0 left-0 z-50 w-full h-full lg:opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-300 ease-in-out rounded-md overflow-hidden shadow-lg">
+                        <div className="absolute top-0 left-0 z-50 w-full h-full lg:opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-300 ease-in-out rounded-md !overflow-hidden shadow-lg">
                             <div className="w-[135%] h-[135%] scale-[0.75] origin-top-left">
                                 {el.link ? (<iframe src={el.link} title="preview" className="w-full h-full grayscale pointer-events-none" loading="lazy" />
                                 ) : (<span className="text-center absolute h-full w-full flex justify-center items-center text-[#E3B341] text-[15px]">Still Under Progress</span>)}

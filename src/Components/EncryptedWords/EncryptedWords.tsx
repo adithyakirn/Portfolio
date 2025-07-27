@@ -31,18 +31,18 @@ const EncryptedWords = () => {
     ]
 
     const desktopPositions = [
-        { top: 25, left: 1 },
-        { top: 55, left: 15 },
+        { top: 25, left: 10 },
+        { top: 55, left: 25 },
         { top: 38, left: 15 },
         { top: 11, left: 15 },
         { top: 54, left: 62 },
         { top: 46, left: 75 },
         { top: 13, left: 49 },
-        { top: 18, left: 71 },
-        { top: 67, left: 40 },
+        { top: 18, left: 81 },
+        { top: 65, left: 40 },
         { top: 12, left: 30 },
         { top: 42, left: 60 },
-        { top: 34, left: 77 },
+        { top: 34, left: 85 },
     ]
 
     useEffect(() => {

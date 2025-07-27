@@ -4,7 +4,6 @@ import ScrollSmoother from 'gsap/ScrollSmoother'
 import Header from "./Components/Header/Header"
 import Main from "./Components/Main/Main"
 import { useEffect } from "react"
-// import Footer from './Components/Footer/Footer'
 import Arsenal from './Components/Main/Projects/Arsenal'
 import Projects from './Components/Main/Projects/Projects'
 import Footer from './Components/Footer/Footer'
@@ -24,7 +23,7 @@ function App() {
           <Header />
           <Main />
           <div className="section-devider h-[1px] bg-[linear-gradient(90deg,transparent,#333,transparent)] m-[120px_0]"></div>
-          <Projects key="projects" />
+          <Projects />
           <Arsenal/>
           <Footer/>
         </div>

@@ -1,4 +1,3 @@
-// ScrambleChar.tsx
 import { useState, useRef } from "react"
 
 const charsPool = "!@#$%^&*";

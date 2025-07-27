@@ -3,7 +3,7 @@ const Header = () => {
     <>
         <nav className="header flex flex-col justify-between !p-[60px_0_0_0] relative container m-[0_auto]">
             <div className="nav flex justify-between items-center !mb-10 md:!justify-center w-full">
-                <div className="logo text-center text-[14px] font-[600] tracking-[3px] text-[#F28F3B] font-[normal] w-full"><span className="text-[#888] font-[normal]">Hey im </span>ADITHYA.KIRAN <span className="text-[#888] font-[normal]">and i'm a</span></div>
+                <div className="logo drop-shadow-[0_0_40px_rgba(242,143,59,0.3)] text-center text-[14px] font-[600] tracking-[3px] text-[#F28F3B] font-[normal] w-full"><span className="text-[#888] font-[normal]">Hey im </span> ADITHYA.KIRAN <span className="text-[#888] font-[normal]">and i'm a</span></div>
             </div>
         </nav>
     </>
