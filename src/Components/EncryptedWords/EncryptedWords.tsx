@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useTheme } from "../Context/Context"
 
 const phrases: string[] = [
     "next()", "useEffect()", "npm install", "yarn dev", "commit -m",
@@ -19,6 +20,8 @@ const randomChar = () => {
 }
 
 const EncryptedWords = () => {
+    const theme = useTheme()
+    const isDark = theme === "dark"
     const [items, setItems] = useState<{ text: string; top: number; left: number; display: string }[]>([])
 
     const mobilePositions = [
@@ -97,8 +100,8 @@ const EncryptedWords = () => {
             {items.map((item, index) => (
                 <span
                     key={index}
-                    className="absolute text-[10px] md:text-sm text-slate-400 opacity-30 font-mono select-none transition-all duration-500"
-                    style={{top: `${item.top}vh`,left: `${item.left}vw`,}}>
+                    className={`absolute text-[10px] md:text-sm ${isDark ? "text-slate-400" : "text-black"} opacity-30 font-mono select-none transition-all duration-500`}
+                    style={{ top: `${item.top}vh`, left: `${item.left}vw`, }}>
                     {item.display}
                 </span>
             ))}

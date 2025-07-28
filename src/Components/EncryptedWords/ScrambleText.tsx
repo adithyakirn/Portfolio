@@ -1,28 +1,49 @@
 export const scrambleText = async (
   targetText: string,
   onUpdate: (scrambled: string) => void,
-  interval = 90
+  interval = 0,
+  scrambleOnly?: string[],
+  fromText?: string
 ): Promise<void> => {
-  const randomChar = () => {
-    const chars = "abcdefghijklmnopqrstuvwxyz012346789!@#$&*+-<>"
-    return chars[Math.floor(Math.random() * chars.length)]
+  const aVariants = ["अ", "அ", "అ", "ಅ", "অ", "અ", "ଅ", "അ", "ਅ", "ا"]
+  const uVariants = ["उ", "உ", "ఉ", "ಉ", "উ", "ઉ", "ଉ", "ഉ", "ਉ", "اُ"];
+  const eVariants = ["ए", "எ", "ఎ", "ఎ", "এ", "એ", "ଏ", "എ", "ਏ", "ے"];
+
+  const randomCharFor = (char: string) => {
+    const base = char
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    if (aVariants.includes("अ") && base === "a") return aVariants[Math.floor(Math.random() * aVariants.length)];
+    if (uVariants.includes("उ") && base === "u") return uVariants[Math.floor(Math.random() * uVariants.length)];
+    if (eVariants.includes("ए") && base === "e") return eVariants[Math.floor(Math.random() * eVariants.length)];
+    return char;
+  };
+
+  const finalChars = targetText.split("")
+  let currentText = fromText ? fromText.split("") : [...finalChars]
+
+  for (let i = 0; i < finalChars.length; i++) {
+    if (
+      scrambleOnly &&
+      !scrambleOnly.includes(
+        finalChars[i]
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+      )
+    ) {
+      continue;
+    }
+
+    for (let j = 0; j < 10; j++) {
+      currentText[i] = randomCharFor(finalChars[i]);
+      onUpdate(currentText.join(""));
+      await new Promise(res => setTimeout(res, 100));
+    }
+
+    currentText[i] = finalChars[i];
+    onUpdate(currentText.join(""));
   }
-
-  return new Promise(resolve => {
-    let frame = 0
-    const maxFrames = targetText.length + 5
-
-    const scramble = setInterval(() => {
-      frame++
-      const scrambled = targetText
-        .split("")
-        .map((char, index) => (frame > index ? char : randomChar()))
-        .join("")
-      onUpdate(scrambled)
-      if (frame >= maxFrames) {
-        clearInterval(scramble)
-        resolve()
-      }
-    }, interval)
-  })
 }

@@ -1,14 +1,17 @@
 import FooterEnd from "./FooterComp/FooterEnd";
 import ScrambleChar from "../EncryptedWords/Scramble";
+import { useTheme } from "../Context/Context";
 
 
 const Footer = () => {
+  const theme = useTheme()
+  const isDark = theme === "dark"
   const chars = ["L", "e", "t", "'", "s", "T", "a", "l", "k"];
   return (
     <>
       <footer className="overflow-clip relative">
         <div className="footer-header group z-4 relative">
-          <a href="" className="group hidden lg:flex items-center text-[#F2F2F2] font-[reg] justify-between relative text-[7.2rem] lg:text-[12.15278vw]">
+          <a href="" className={`group hidden lg:flex items-center ${isDark ? "text-[#F2F2F2]" : "text-[#ff391e]" } font-[reg] justify-between relative text-[7.2rem] lg:text-[12.15278vw]`}>
                 <span className="relative -translate-x-[20px] flex overflow-hidden w-[10.70602vw] h-[8.96991vw] items-center justify-start">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 19"
                     className="transition-transform drop-shadow-[0_0_40px_rgba(252,252,252,0.2)]  duration-700 ease-[cubic-bezier(.19,1,.22,1)] transform -translate-x-[50rem] group-hover:translate-x-0 lg:h-[8.96991vw] lg:w-[10.70602vw]">

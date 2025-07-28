@@ -1,3 +1,4 @@
+
 import HeroAbout from "./HeroComp/HeroAbout"
 
 const HeroInfo = () => {
