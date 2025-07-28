@@ -40,7 +40,7 @@ export const scrambleText = async (
     for (let j = 0; j < 10; j++) {
       currentText[i] = randomCharFor(finalChars[i]);
       onUpdate(currentText.join(""));
-      await new Promise(res => setTimeout(res, 100));
+      await new Promise(res => setTimeout(res, interval));
     }
 
     currentText[i] = finalChars[i];
