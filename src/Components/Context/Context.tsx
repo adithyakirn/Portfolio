@@ -23,5 +23,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     </Context.Provider>
   );
 };
+
 // eslint-disable-next-line
 export const useTheme = () => useContext(Context);

@@ -19,7 +19,7 @@ const LetsTalk = () => {
           </span>
         </Link>
         <p className="text-[16px] leading-relaxed max-w-2xl mx-auto ">
-          Thanks for dropping by. I’m currently open to full-time roles, freelance projects, and collaborations. If you’ve got something in mind, scroll down and let’s connect.
+          Thanks for dropping by. I’m Adithya Kiran, a developer open to full-time roles, freelance projects, and collaborations. If you’ve got something in mind, feel free to reach out below.
         </p>
       </div>
       <div className="px-4 pb-10 font-[reg] text-[16px] text-center leading-[1.1]">
