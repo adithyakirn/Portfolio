@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+
+@font-face {
+  font-family: "reg";
+  src: url("./assets/Font/LumendDemoRegular-PKpzB.otf");
+}
+@font-face {
+  font-family: "normal";
+  src: url("./assets/Font/AnonymousPro-Regular.ttf");
+}
+body{
+  object-fit: contain;
+  font-family: "reg", "Noto Sans", "Noto Sans Arabic", "Noto Sans Devanagari", "Noto Sans Bengali", "Noto Sans Tamil", "Noto Sans Malayalam", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Gurmukhi", "Arial", sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: #0A0A0A;
+  color: #FAFAFA;
+  overflow-x: hidden;
+}
+body.light {
+  background: #F8F8F8;
+  color: #ff391e;
+}
+* {
+    box-sizing: border-box;
+    overflow: visible !important;
+}
+.glass-blur {
+  background: rgb(255, 255, 255) !important; /* Semi-transparent white for glass look */
+  backdrop-filter: blur(20px) !important;
+  color: black;
+  -webkit-backdrop-filter: blur(20px) !important;
+}

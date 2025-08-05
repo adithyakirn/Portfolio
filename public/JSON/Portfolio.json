@@ -1,0 +1,123 @@
+{
+  "Project_Details": [
+    {
+      "id": 1,
+      "projectname": "Porsche-Frontend",
+      "languages": ["React", "tailwindcss", "css", "Javascript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://porsche-homepage-react.vercel.app/",
+      "about": "A modern React-based recreation of Porsche’s homepage UI with responsive layout and animations."
+    },
+    {
+      "id": 2,
+      "projectname": "Amazon-Clone",
+      "languages": ["React", "tailwindcss", "typescript"],
+      "status": "In Progress",
+      "year": 2025,
+      "link": "https://amazon-clone-ts-react-elug.vercel.app//",
+      "about": "A TypeScript + React-based Amazon UI clone with modular components, routing, and responsive design. Built for frontend practice and UI replication."
+    },
+    {
+      "id": 3,
+      "projectname": "Linear-Clone",
+      "languages": ["Html & Css", "Javascript"],
+      "status": "ui/ux",
+      "year": 2025,
+      "link": "https://linearfullyresponsivesite.netlify.app/",
+      "about": "A responsive clone of Linear.app using HTML and CSS. Designed to closely mirror the original layout and styling."
+    },
+    {
+      "id": 4,
+      "projectname": "Dribble-Clone",
+      "languages": ["Html & Css", "Javascript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://dribblefrontend.netlify.app/",
+      "about": "A frontend clone of Dribbble built with HTML, CSS, and JavaScript. Features include a responsive grid layout, interactive shot previews, category filters, and click-based modals—designed to mimic Dribbble’s user experience."
+    }
+  ],
+  "allProjects": [
+    {
+      "id": 1,
+      "projectname": "Amazon-Clone",
+      "languages": ["React", "tailwindcss", "typescript"],
+      "status": "In Progress",
+      "year": 2025,
+      "link": "https://amazon-clone-ts-react-elug.vercel.app/",
+      "about": "A TypeScript + React-based Amazon UI clone with modular components, routing, and responsive design. Built for frontend practice and UI replication."
+    },
+    {
+      "id": 2,
+      "projectname": "Porsche-Frontend",
+      "languages": ["React", "tailwindcss", "css", "Javascript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://porsche-homepage-react.vercel.app/",
+      "about": "A modern React-based recreation of Porsche’s homepage UI with responsive layout and animations."
+    },
+    {
+      "id": 3,
+      "projectname": "Linear-Clone",
+      "languages": ["Html & Css", "Javascript"],
+      "status": "ui/ux",
+      "year": 2025,
+      "link": "https://linearfullyresponsivesite.netlify.app/",
+      "about": "A responsive clone of Linear.app using HTML and CSS. Designed to closely mirror the original layout and styling."
+    },
+    {
+      "id": 4,
+      "projectname": "Dribble-Clone",
+      "languages": ["Html & Css", "Javascript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://dribblefrontend.netlify.app/",
+      "about": "A frontend clone of Dribbble built with HTML, CSS, and JavaScript. Features include a responsive grid layout, interactive shot previews, category filters, and click-based modals—designed to mimic Dribbble’s user experience."
+    },
+    {
+      "id": 5,
+      "projectname": "DailyObjects-Clone",
+      "languages": ["Html", "Css", "Javascript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://daily-object-frontend.vercel.app/",
+      "about": "A responsive frontend replica of the DailyObjects e-commerce website built with HTML, CSS, and JavaScript."
+    },
+    {
+      "id": 6,
+      "projectname": "AirBnB-ResponsiveWebCloning",
+      "languages": ["Html", "Css"],
+      "status": "ui/ux",
+      "year": 2025,
+      "link": "https://airbnb-web-clone-brown.vercel.app/",
+      "about": "A static responsive replica of Airbnb's homepage built with HTML and CSS. It focuses on layout structure and UI matching without interactivity."
+    },
+    {
+      "id": 7,
+      "projectname": "UberEats-ResponsiveWebCloning",
+      "languages": ["Html", "Css"],
+      "status": "ui/ux",
+      "year": 2025,
+      "link": "https://ubereatsresponsivewebcloning.netlify.app/",
+      "about": "A static responsive layout of UberEats built with pure HTML and CSS. This project mimics the look and feel of the homepage."
+    },
+    {
+      "id": 8,
+      "projectname": "Spotify-ResponsiveWebCloning",
+      "languages": ["Html", "Css"],
+      "status": "ui/ux",
+      "year": 2025,
+      "link": "https://spotifyresponsivewebcloning.netlify.app/",
+      "about": "A visually aligned clone of Spotify's landing page created with only HTML and CSS. No functionality, focused purely on layout."
+    },
+    {
+      "id": 9,
+      "projectname": "DoorDash-ResponsiveWebCloning",
+      "languages": ["Html", "Css"],
+      "status": "ui/ux",
+      "year": 2025,
+      "link": "https://doordashresponsivewebcloning.netlify.app/",
+      "about": "A fully responsive HTML and CSS clone of DoorDash’s homepage UI layout, styled to closely match the original."
+    }
+  ]
+}
