@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @font-face {
   font-family: "reg";
   src: url("./assets/Font/LumendDemoRegular-PKpzB.otf");

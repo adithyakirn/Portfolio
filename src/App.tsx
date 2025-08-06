@@ -36,14 +36,12 @@ function App() {
     <>
       <div id="wrapper" className="container-wrapper min-h-[100vh] m-[0_auto]">
         <div id="inner-content" className="m-[0_auto]">
-          <PageTransition>
-            <Routes>
-              <Route path='/' element={<Home />}></Route>
-              <Route path='/allProjects' element={<AllProjects />} />
-              <Route path='/lets_talk' element={<LetsTalk />} />
-              <Route path='*' element={<Error404 />} />
-            </Routes>
-          </PageTransition>
+          <Routes>
+            <Route path='/' element={<PageTransition><Home /></PageTransition>} />
+            <Route path='/allProjects' element={<PageTransition><AllProjects /></PageTransition>} />
+            <Route path='/lets_talk' element={<PageTransition><LetsTalk /></PageTransition>} />
+            <Route path='*' element={<PageTransition><Error404 /></PageTransition>} />
+          </Routes>
         </div>
       </div>
     </>
