@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/Components/Footer/..tsx"]
+  "include": ["src", "src/Components/Footer/..tsx", "server.ts"]
 }

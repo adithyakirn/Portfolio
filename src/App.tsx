@@ -10,9 +10,12 @@ import LetsTalk from "./Components/LetsTalk/LetsTalk";
 import Error404 from "./Components/Error/Error";
 
 import PageTransition from "./Components/Transition/PageTransition";
+import { useTheme } from "./Components/Context/Context";
 
 function App() {
   const location = useLocation();
+  const theme = useTheme()
+  const isDark = theme === "dark"
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -35,13 +38,18 @@ function App() {
     };
 
     updateBodyClass();
+
     mediaQuery.addEventListener("change", updateBodyClass);
-  }, []);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateBodyClass);
+    };
+  }, [location]);
 
   return (
     <div
       id="wrapper"
-      className="container-wrapper min-h-[100vh] m-[0_auto] transition-opacity duration-1000 ease-in-out opacity-100"
+      className={`${isDark ? "bg-[#0a0a0a]" : "bg-[#fafafa]"} container-wrapper min-h-[100vh] bg m-[0_auto] transition-opacity duration-1000 ease-in-out opacity-100`}
     >
       <div id="inner-content" className="m-[0_auto]">
         <Routes location={location}>
