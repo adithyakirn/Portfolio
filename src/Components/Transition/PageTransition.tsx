@@ -1,12 +1,17 @@
 import gsap from "gsap";
-import type React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const PageTransition = ({ children }: { children: React.ReactNode }) => {
-    const containerRef = useRef<HTMLDivElement | null>(null);
-    const animationRef = useRef<GSAPTimeline | null>(null);
+const PageTransition = ({ children, locationKey }: { children: React.ReactNode; locationKey: string }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const animationRef = useRef<GSAPTimeline | null>(null);
 
-    useEffect(() => {
+  const [displayedChildren, setDisplayedChildren] = useState(children);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const prevLocationKey = useRef(locationKey);
+
+  useEffect(() => {
+    if (locationKey === prevLocationKey.current) return; // No change
+
     const el = containerRef.current;
     if (!el) return;
 
@@ -15,56 +20,88 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
 
     if (!bg || !content) return;
 
-    if (animationRef.current) {
-        animationRef.current.kill();
-    }
+    setIsTransitioning(true);
 
-    if (!el.contains(bg) || !el.contains(content)) return;
+    if (animationRef.current) animationRef.current.kill();
 
-    // Delay to wait for DOM stability
-    requestAnimationFrame(() => {
-        gsap.set(content, { opacity: 0, y: 40 });
-        gsap.set(bg, { opacity: 0 });
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setDisplayedChildren(children);
+        setIsTransitioning(false);
 
-        const tl = gsap.timeline();
-        animationRef.current = tl;
+        if (animationRef.current) animationRef.current.kill();
 
-        tl.to(content, {
+        animationRef.current = gsap.timeline();
+        animationRef.current
+          .set(content, { opacity: 0, y: 40 })
+          .set(bg, { opacity: 0 })
+          .to(content, {
             opacity: 1,
             y: 0,
             duration: 0.6,
             ease: "power3.out",
-        }).to(bg, {
-            opacity: 0.15,
-            duration: 0.8,
-            ease: "power2.out",
-        }, "-=0.3");
+          })
+          .to(
+            bg,
+            {
+              opacity: 0.15,
+              duration: 0.8,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          );
+      },
     });
 
-    return () => {
-        if (animationRef.current) {
-            animationRef.current.kill();
-            animationRef.current = null;
-        }
-    };
-}, [children]);
-
-    return (
-        <div ref={containerRef} style={{ position: "relative", overflow: "hidden" }}>
-            <div id="fade-bg" style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                opacity: 0,
-                zIndex: 0
-            }} />
-            <div id="page-content" style={{ position: "relative", zIndex: 1 }}>
-                {children}
-            </div>
-        </div>
+    tl.to(content, {
+      opacity: 0,
+      y: 40,
+      duration: 0.5,
+      ease: "power3.in",
+    }).to(
+      bg,
+      {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.in",
+      },
+      "-=0.5"
     );
+
+    prevLocationKey.current = locationKey;
+
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.kill();
+        animationRef.current = null;
+      }
+    };
+  }, [locationKey, children]);
+
+  return (
+    <div
+      ref={containerRef}
+      style={{ position: "relative", overflow: "hidden" }}
+      aria-busy={isTransitioning}
+    >
+      <div
+        id="fade-bg"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          opacity: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      />
+      <div id="page-content" style={{ position: "relative", zIndex: 1 }}>
+        {displayedChildren}
+      </div>
+    </div>
+  );
 };
 
-export default PageTransition;
+export default PageTransition

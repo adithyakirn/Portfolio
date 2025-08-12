@@ -9,7 +9,7 @@ const LetsTalk = () => {
   return (
     <div className={`h-screen flex justify-center flex-col ${isDark ? '' : ''}`}>
       <div className={`text-center px-4 py-10 font-[reg]`}>
-        <Link to="/lets_talk" className={`hidden lg:flex items-center justify-center ${isDark ? "text-[#F2F2F2]" : "text-[#ff391e]"} font-[reg] justify-between relative text-[7.2rem] lg:text-[12.15278vw]`}>
+        <Link to="/lets_talk" className={`flex items-center justify-center ${isDark ? "text-[#F2F2F2]" : "text-[#ff391e]"} font-[reg] justify-between relative text-[80px] sm:text-[7.2rem] lg:text-[12.15278vw]`}>
           <span className="flex !overflow-hidden relative lg:ml-[-.07em] justify-center transform  before:transition-[all.5s_cubic-bezier(.19,1,.22,1)] before:delay-[.2] before:bg-current before:bottom-[3.13194vw] before:content-[''] before:h-[.1rem] before:left-[.072em] before:absolute before:right-[-.065em] origin-left">
             <span className="text-splitter--splitted text-splitter group drop-shadow-[0_0_40px_rgba(252,252,252,0.2)]">
               {chars.map((char, i) => (

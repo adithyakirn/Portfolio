@@ -1,22 +1,13 @@
 {
   "Project_Details": [
     {
-      "id": 1,
-      "projectname": "Porsche-Frontend",
-      "languages": ["React", "tailwindcss", "css", "Javascript"],
+      "id": 2,
+      "projectname": "Adharsh-Portfolio",
+      "languages": ["Next", "tailwindcss", "typescript"],
       "status": "visual & functional",
       "year": 2025,
-      "link": "https://porsche-homepage-react.vercel.app/",
-      "about": "A modern React-based recreation of Porsche’s homepage UI with responsive layout and animations."
-    },
-    {
-      "id": 2,
-      "projectname": "Amazon-Clone",
-      "languages": ["React", "tailwindcss", "typescript"],
-      "status": "In Progress",
-      "year": 2025,
-      "link": "https://amazon-clone-ts-react-elug.vercel.app//",
-      "about": "A TypeScript + React-based Amazon UI clone with modular components, routing, and responsive design. Built for frontend practice and UI replication."
+      "link": "https://adharsh-portfolio-ruddy.vercel.app/",
+      "about": "Adharsh’s terminal-inspired portfolio built with Next.js and Tailwind CSS. It features a retro CLI interface with typing animations, blinking cursor, and responsive design. Showcases skills, projects, and contact info in a unique, nostalgic way. -exactly a terminal"
     },
     {
       "id": 3,
@@ -35,6 +26,15 @@
       "year": 2025,
       "link": "https://dribblefrontend.netlify.app/",
       "about": "A frontend clone of Dribbble built with HTML, CSS, and JavaScript. Features include a responsive grid layout, interactive shot previews, category filters, and click-based modals—designed to mimic Dribbble’s user experience."
+    },
+    {
+      "id": 1,
+      "projectname": "Porsche-Frontend",
+      "languages": ["React", "tailwindcss", "css", "Javascript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://porsche-homepage-react.vercel.app/",
+      "about": "A modern React-based recreation of Porsche’s homepage UI with responsive layout and animations."
     }
   ],
   "allProjects": [
@@ -118,6 +118,15 @@
       "year": 2025,
       "link": "https://doordashresponsivewebcloning.netlify.app/",
       "about": "A fully responsive HTML and CSS clone of DoorDash’s homepage UI layout, styled to closely match the original."
+    },
+     {
+      "id": 10,
+      "projectname": "Adharsh-Portfolio",
+      "languages": ["Next", "tailwindcss", "typescript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://adharsh-portfolio-ruddy.vercel.app/",
+      "about": "Adharsh’s terminal-inspired portfolio built with Next.js and Tailwind CSS. It features a retro CLI interface with typing animations, blinking cursor, and responsive design. Showcases skills, projects, and contact info in a unique, nostalgic way. -exactly a terminal"
     }
   ]
 }
