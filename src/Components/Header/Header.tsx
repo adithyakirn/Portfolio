@@ -24,7 +24,7 @@ const Header = () => {
       setNameIndex(prev => (prev + 1) % nameVariants.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nameVariants.length]);
 
   const name = nameVariants[nameIndex];
   return (

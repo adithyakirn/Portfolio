@@ -101,7 +101,7 @@ const IProjects = () => {
                         </div>
                         <div className="absolute top-0 left-0 z-50 w-full h-full lg:opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-300 ease-in-out rounded-md !overflow-hidden shadow-lg">
                             <div className="w-[135%] h-[135%] scale-[0.75] origin-top-left">
-                                 <iframe src={el.link} title="preview" className={`w-full h-full ${isDark && "grayscale"} pointer-events-none`} loading="lazy" />
+                                 <iframe src={el.link} title="preview" className={`w-full h-full ${isDark && "grayscale"} !pointer-events-none`} loading="lazy" />
                             </div>
                         </div>
                     </div>
