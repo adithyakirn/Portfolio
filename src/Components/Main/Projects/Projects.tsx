@@ -8,7 +8,7 @@ const Projects = () => {
   return (
       <section
         id="projects-wrapper"
-        className="min-h-screen p-25 lg:pl-[100px] m-[0_auto] relative section"
+        className="min-h-screen p-10 lg:p-25 lg:pl-[100px] m-[0_auto] relative section"
       >
         <div className="w-full h-full">
           <div className="section-header mb-20 relative ">

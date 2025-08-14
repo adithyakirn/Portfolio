@@ -48,43 +48,28 @@ function App() {
 
   return (
     <div
-      id="wrapper"
-      className={`${isDark ? "bg-[#0a0a0a]" : "bg-[#fafafa]"} container-wrapper min-h-[100vh] bg m-[0_auto] transition-opacity duration-1000 ease-in-out opacity-100`}
-    >
+      id="wrapper" className={`${isDark ?
+                               "bg-[#0a0a0a]" : 
+                               "bg-[#fafafa]"}
+       container-wrapper min-h-[100vh] bg m-[0_auto] transition-opacity duration-1000 ease-in-out opacity-100`}>
       <div id="inner-content" className="m-[0_auto]">
         <Routes location={location}>
-          <Route
-            path="/"
-            element={
+          <Route path="/" element={
               <PageTransition locationKey={location.pathname}>
                 <Home />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/allProjects"
-            element={
+              </PageTransition>}/>
+          <Route path="/allProjects" element={
               <PageTransition locationKey={location.pathname}>
                 <AllProjects />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/lets_talk"
-            element={
+              </PageTransition>}/>
+          <Route path="/lets_talk" element={
               <PageTransition locationKey={location.pathname}>
                 <LetsTalk />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="*"
-            element={
+              </PageTransition>}/>
+          <Route path="*" element={
               <PageTransition locationKey={location.pathname}>
                 <Error404 />
-              </PageTransition>
-            }
-          />
+              </PageTransition>}/>
         </Routes>
       </div>
     </div>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../Context/Context";
 
 interface PreLoaderProps {
@@ -6,125 +7,64 @@ interface PreLoaderProps {
 }
 
 const PreLoader: React.FC<PreLoaderProps> = ({ onFinish }) => {
-  const isDarkTheme = useTheme() === "dark"
-  const [percentage, setPercentage] = useState(0);
-  const [fadeOutContent, setFadeOutContent] = useState(false);
-  const [fadeOutOverlay, setFadeOutOverlay] = useState(false);
-  const startTimeRef = useRef<number | null>(null);
-  const duration = 1000; // 6 seconds
+  const isDarkTheme = useTheme() === "dark";
+  const [showLoader, setShowLoader] = useState(true);
+
+
+// Set overflow hidden on mount
+useEffect(() => {
+  document.body.style.overflow = "hidden";
+  // No cleanup needed as we handle reset on exit complete
+}, []);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    const timer = setTimeout(() => setShowLoader(false), 2500); // total delay including fade
+    return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let finished = false;
-
-    const animate = (timestamp: number) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp;
-      const elapsed = timestamp - startTimeRef.current;
-      const progress = Math.min(elapsed / duration, 1);
-      const newPercentage = Math.round(progress * 100);
-      setPercentage(newPercentage);
-
-      if (progress < 1) {
-        animationFrameId = requestAnimationFrame(animate);
-      } else if (!finished) {
-        finished = true;
-        // Ensure percentage is exactly 100 at the end
-        setPercentage(100);
-        // Start fade out sequence after percentage hits 100
-        setTimeout(() => setFadeOutContent(true), 2000);
-        setTimeout(() => setFadeOutOverlay(true), 3000);
-      }
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (fadeOutOverlay) {
-      const timeoutId = setTimeout(() => {
-        onFinish();
-      }, 1000);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [fadeOutOverlay, onFinish]);
 
   return (
-    <>
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes fadeOut {
-          from { opacity: 1; }
-          to { opacity: 0; }
-        }
-        .percentage-text {
-          font-size: 2rem;
-          font-weight: bold;
-          color: #00faff;
-          text-shadow:
-            0 0 5px #00faff,
-            0 0 10px #00faff,
-            0 0 20px #00faff,
-            0 0 40px #00faff;
-          user-select: none;
-          margin-right: 20px;
-          min-width: 60px;
-          text-align: right;
-        }
-      `}</style>
-      <div
-        className={`fixed inset-0 ${isDarkTheme ? "bg-[#0A0A0A]" : "bg-[#F8F8F8]"} z-50 flex items-center justify-center transition-all duration-[1000ms] ease-in-out ${
-          fadeOutOverlay
-            ? "opacity-0 pointer-events-none -translate-y-full"
-            : "opacity-100 translate-y-0"
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center">
-          <h1
-            className="preloader-title text-center font-black leading-[0.85] -tracking-[4px] mb-8"
-            style={{
-              fontSize: "clamp(80px, 15vw, 240px)",
-              lineHeight: "0.85",
-              letterSpacing: "-4px",
-              color: "#F28F3B",
-              textShadow: "0 0 40px rgba(242,143,59,0.3)",
-              opacity: fadeOutContent ? 0 : 1,
-              transform: fadeOutContent ? "scale(1)" : "scale(1.05)",
-              transition: "opacity 1s ease, transform 1s ease"
-            }}
-          >
-            <>
-              Fùll Ståçk
-              <br />
-              Dēv
-            </>
-          </h1>
-          <div className="flex flex-row items-center justify-center">
-            <span
-              className="percentage-text"
-              style={{ opacity: fadeOutContent ? 0 : 1, transition: "opacity 0.5s" }}
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              {percentage}%
-            </span>
-          </div>
-        </div>
-      </div>
-    </>
+    <AnimatePresence
+      onExitComplete={() => {
+        document.body.style.overflow = "";
+        onFinish();
+      }}
+    >
+      {showLoader && (
+        <motion.div
+          className={`fixed inset-0 ${
+            isDarkTheme ? "bg-[#0A0A0A]" : "bg-[#F8F8F8]"
+          } z-50 flex items-center justify-center`}
+          initial={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: "-100%", pointerEvents: "none" }}
+          transition={{ duration: 1 }}
+        >
+        <motion.div
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: "50%",
+            border: "4px solid #ccc",
+            borderTop: "4px solid #00faff",
+          }}
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 1 }}
+        />
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+            textAlign: "center",
+            marginTop: "20px",
+          }}
+        >
+  welcome to my portfolio!
+        </motion.h1>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
