@@ -7,24 +7,26 @@ const frontendArr = [
   "HTML / CSS",
   "JavaScript / TypeScript",
   "React / Next.js",
+  "React Native",
   "Tailwind CSS",
   "Animations (GSAP)",
-]
+];
 
 const backendArr = [
   "Node.js / Express",
   "PostgreSQL",
   "MongoDB / Mongosh",
-  "APIs & REST"
-]
+  "APIs & REST",
+];
 
 const learningArr = [
-  "Next.js / Advanced TypeScript",
+  "Advanced TypeScript",
   "GraphQL",
   "Authentication & Authorization",
   "Database Design",
-  "Testing ( Jest / Vitest)"
-]
+  "Testing (Jest / Vitest)",
+];
+
 const Knowledge = ({ frontend, backend, learning }: KnowledgeProps) => {
   return (
     <>
