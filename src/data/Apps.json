@@ -13,7 +13,7 @@
     "framework": "React Native",
     "gradient": "linear-gradient(to bottom, rgb(255, 180, 120) 0%, rgb(255, 150, 90) 40%, rgb(255, 120, 70) 70%, rgb(255, 100, 60) 100%)",
     "color": "#ffb580",
-    "img": "/roosnest.webp"
+    "img": "/roosnest.png"
   },
   "yaskitchen": {
     "name": "Yas Kitchen",
@@ -29,7 +29,7 @@
     "framework": "React Native",
     "gradient": "linear-gradient(to bottom, rgb(40, 32, 28) 0%, rgb(25, 21, 19) 45%, rgb(15, 12, 11) 100%)",
     "color": "#0f0c0b",
-    "img": "/yaskitchen.webp",
+    "img": "/yaskitchen.png",
     "images": [
       "/assets/mockup/YasKitchen/CompleteRegistration.webp",
       "/assets/mockup/YasKitchen/planSelection.webp",
