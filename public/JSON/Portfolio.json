@@ -119,7 +119,7 @@
       "link": "https://doordashresponsivewebcloning.netlify.app/",
       "about": "A fully responsive HTML and CSS clone of DoorDash’s homepage UI layout, styled to closely match the original."
     },
-     {
+    {
       "id": 10,
       "projectname": "Adharsh-Portfolio",
       "languages": ["Next", "tailwindcss", "typescript"],
@@ -127,6 +127,15 @@
       "year": 2025,
       "link": "https://adharsh-portfolio-ruddy.vercel.app/",
       "about": "Adharsh’s terminal-inspired portfolio built with Next.js and Tailwind CSS. It features a retro CLI interface with typing animations, blinking cursor, and responsive design. Showcases skills, projects, and contact info in a unique, nostalgic way. -exactly a terminal"
+    },
+    {
+      "id": 11,
+      "projectname": "Kappil-Exports",
+      "languages": ["React", "tailwindcss", "typescript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://kappil-exports.vercel.app/",
+      "about": "Kappil Exports’ e-commerce website built with React and Tailwind CSS. It features a modern, responsive design with smooth animations and a user-friendly interface. Showcases products, categories, and contact info in a unique, engaging way."
     }
   ]
 }
