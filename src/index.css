@@ -9,6 +9,11 @@
   font-family: "normal";
   src: url("./assets/Font/AnonymousPro-Regular.ttf");
 }
+html {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 body {
   object-fit: contain;
   font-family: "reg", "Noto Sans", "Noto Sans Arabic", "Noto Sans Devanagari",
@@ -19,10 +24,11 @@ body {
   background-repeat: no-repeat;
   overflow-x: hidden;
   color: #fafafa;
+  min-height: 100%;
+  position: relative;
 }
 * {
   box-sizing: border-box;
-  overflow: visible !important;
 }
 .glass-blur {
   background: rgb(
@@ -33,4 +39,11 @@ body {
   backdrop-filter: blur(20px) !important;
   color: black;
   -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* Mobile-specific fixes for scrolling */
+@media (max-width: 768px) {
+  html, body {
+    overscroll-behavior-y: none; /* Prevent bounce scrolling beyond content */
+  }
 }

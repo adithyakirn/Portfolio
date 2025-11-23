@@ -19,13 +19,25 @@ function App() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    
+    // Detect if device is mobile/touch device
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                     ('ontouchstart' in window) || 
+                     (navigator.maxTouchPoints > 0);
+    
+    // Create ScrollSmoother with mobile-optimized settings
     const smoother = ScrollSmoother.create({
       wrapper: "#wrapper",
       content: "#inner-content",
+      smooth: isMobile ? 1 : 1.5, // Less smoothing on mobile
+      effects: !isMobile, // Disable effects on mobile for better performance
+      normalizeScroll: isMobile, // Better touch behavior on mobile
+      ignoreMobileResize: true, // Prevent issues with mobile keyboard
     });
 
     return () => {
       smoother.kill();
+      ScrollTrigger.refresh();
     };
   }, []);
 
