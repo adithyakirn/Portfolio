@@ -3,7 +3,7 @@
     "name": "RoosNest",
     "fullName": "RoosNest: International Kindergarten",
     "subtitle": "Parent Portal & Student Activity",
-    "description": "RoosNest helps parents stay connected with their child’s kindergarten activities, updates, and daily progress.",
+    "description": "RoosNest is a comprehensive kindergarten management platform designed to streamline communication between parents, teachers, and administrators. It features three distinct interfaces: a Parent Portal for real-time progress tracking and activity galleries, a Teacher Dashboard with instant QR attendance marking, and an Admin panel for system control. Built with React Native, TypeScript, and Supabase, RoosNest delivers a seamless, secure experience across iOS, Android, and Web, solving the challenge of fragmented school communication",
     "pricing": "Free",
     "platform": "iOS • Android • Web",
     "category": "Productivity",
@@ -13,13 +13,22 @@
     "framework": "React Native",
     "gradient": "linear-gradient(to bottom, rgb(255, 180, 120) 0%, rgb(255, 150, 90) 40%, rgb(255, 120, 70) 70%, rgb(255, 100, 60) 100%)",
     "color": "#ffb580",
-    "img": "/roosnest.png"
+    "img": "/roosnest.png",
+    "images": [
+      "/assets/mockup/RoosNest/homeParents.jpg",
+      "/assets/mockup/RoosNest/noticeParents.jpg",
+      "/assets/mockup/RoosNest/childDetails.jpg",
+      "/assets/mockup/RoosNest/activityParents.jpg",
+      "/assets/mockup/RoosNest/attendanceParent.jpg",
+      "/assets/mockup/RoosNest/teacherHome.jpg",
+      "/assets/mockup/RoosNest/qr.jpg"
+    ]
   },
   "yaskitchen": {
     "name": "Yas Kitchen",
     "fullName": "Yas Kitchen – UAE Mess Service",
     "subtitle": "Smart meal selection for workers & staff",
-    "description": "Yas Kitchen is a cross-platform mess-management application built for workers and staff across the UAE. It allows users to view daily menus, browse specials, and track their food plans through a clean and intuitive interface. The project also includes an admin side, where authorized staff can log in using OTP verification. If the entered number matches an admin record, the system automatically grants access to admin controls such as meal updates and menu management. Developed entirely with React Native and TypeScript, Yas Kitchen ensures smooth performance and consistent behaviour across iOS, Android, and Web.",
+    "description": "Yas Kitchen is a cross-platform mess-management application built for workers and staff across the UAE. It allows users to view daily menus, browse specials, and track their food plans through a clean and intuitive interface. The project also includes an admin side, where authorized staff can log in using OTP verification to access meal updates and menu management. Developed using React Native and TypeScript for the frontend, and powered by a robust backend using Supabase and Python, Yas Kitchen ensures smooth performance and consistent behaviour across iOS, Android, and Web",
     "pricing": "Free · In-App Purchases",
     "platform": "iOS · Android · Web",
     "category": "Utilities",

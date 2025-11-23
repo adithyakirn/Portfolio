@@ -33,7 +33,7 @@ const Images = () => {
             <div key={index} className="flex-shrink-0 flex justify-center snap-start">
               <img
                 src={img}
-                className="h-[310px] w-auto rounded-3xl shadow-lg"
+                className="h-[310px] lg:h-[500px] xl:h-[600px] w-auto rounded-3xl shadow-lg"
                 alt={`mockup-${index}`}
               />
             </div>

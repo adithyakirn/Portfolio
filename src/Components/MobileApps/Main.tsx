@@ -40,16 +40,16 @@ const Main = ({ appname }: { appname: string | undefined }) => {
   return (
     <>
       <div className="h-full w-screen">
-        <section className="h-[200px] w-full" style={{ background: color }}>
-          <div className="h-[200px] w-full" style={{ background: bgColor }}>
+        <section className="h-[200px] lg:h-[300px] xl:h-[400px]  w-full" style={{ background: color }}>
+          <div className="h-[200px] lg:h-[300px] xl:h-[400px] w-full " style={{ background: bgColor }}>
             <div className="h-full mx-7 w-screen flex items-center flex-row gap-4">
-              <img src={img} className="h-30 w-auto" alt="" />
-              <div className="flex flex-col items-start justify-center h-32 mt-[12px]">
-                <h1 className="text-white text-[17px] w-[80%] font-sans font-semibold leading-tight">
+              <img src={img} className="h-30 w-auto lg:h-[200px] xl:h-[300px]" alt="" />
+              <div className="flex flex-col items-start justify-center xl:gap-2 h-32 mt-[12px]">
+                <h1 className="text-white text-[17px] w-[80%] lg:w-full lg:text-[38px] xl:text-[] font-sans font-semibold leading-tight">
                   {data.fullName}
                 </h1>
                 <p
-                  className="text-white text-[13px] font-sans w-[80%] mt-1"
+                  className="text-white text-[13px] font-sans w-[80%] lg:w-full lg:text-[17px] mt-1"
                   style={{ color: "rgba(245, 245, 245, 0.6)" }}
                 >
                   {data.subtitle}

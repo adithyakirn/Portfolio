@@ -2,8 +2,11 @@ import React from "react";
 import { Briefcase, User, Smartphone } from "lucide-react";
 import apps from "../../data/Apps.json";
 import { useParams } from "react-router";
+import { useTheme } from "../Context/Context";
 
 const Category = () => {
+  const theme = useTheme();
+  const isDark = theme === "dark";
   const { appname } = useParams();
   const safeName = (appname ?? "roosnest") as keyof typeof apps;
   const data = apps[safeName];
@@ -16,7 +19,7 @@ const Category = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="-11.5 -10.23174 23 20.46348"
-          className="w-6 h-6 text-[#61DAFB]"
+          className="w-6 h-6 xl:w-10 xl:h-10 text-[#61DAFB]"
         >
           <circle cx="0" cy="0" r="2.05" fill="currentColor" />
           <g stroke="currentColor" strokeWidth="1" fill="none">
@@ -37,13 +40,25 @@ const Category = () => {
       label: "CATEGORY",
       value: data.category,
       subLabel: data.category,
-      icon: <Briefcase className="w-6 h-6 text-white/80" />,
+      icon: (
+        <Briefcase
+          className={`w-6 h-6 xl:w-10 xl:h-10 ${
+            isDark ? "text-[#EBEBF599]" : "text-black"
+          }`}
+        />
+      ),
     },
     {
       label: "DEVELOPER",
       value: data.developer,
       subLabel: data.developer,
-      icon: <User className="w-6 h-6 text-white/80" />,
+      icon: (
+        <User
+          className={`w-6 h-6 xl:w-10 xl:h-10 ${
+            isDark ? "text-[#EBEBF599]" : "text-black"
+          }`}
+        />
+      ),
     },
     {
       label: "LANGUAGE",
@@ -55,7 +70,13 @@ const Category = () => {
       label: "PLATFORM",
       value: data.platform,
       subLabel: data.platform,
-      icon: <Smartphone className="w-6 h-6 text-white/80" />,
+      icon: (
+        <Smartphone
+          className={`w-6 h-6 xl:w-10 xl:h-10 ${
+            isDark ? "text-[#EBEBF599]" : "text-black"
+          }`}
+        />
+      ),
     },
   ];
 
@@ -63,7 +84,7 @@ const Category = () => {
     <section className="mt-[13px] pt-[13px] select-none text-[13px] font-sans font-[400]">
       <div className="pb-[16px]">
         <ul
-          className="px-[20px] flex m-0 list-none overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-8 category-scroll"
+          className="px-[20px] flex m-0 list-none overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-8 lg:gap-4 category-scroll"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           onWheel={(e) => e.stopPropagation()}
           onTouchStart={(e) => e.stopPropagation()}
@@ -77,29 +98,32 @@ const Category = () => {
               key={index}
               className={`shrink-0 px-6 ${index === 0 ? "ml-[9px]" : ""}`}
             >
-              <div className="flex items-center flex-col min-w-[80px]">
+              <div className="flex items-center flex-col min-w-[80px] xl:min-w-[200px]">
                 <div className="text-center">
                   <div
-                    className="uppercase mb-[3px] text-[11px] font-medium tracking-wide"
-                    style={{ color: "rgba(235, 235, 245, 0.6)" }}
+                    className={`uppercase ${
+                      isDark ? "text-[#EBEBF599]" : "text-black"
+                    } mb-[3px] xl:text-[16px] text-[11px] xl:font-normal font-medium tracking-wide`}
                   >
                     {item.label}
                   </div>
-                  <div className="flex items-center justify-center h-8 mb-1">
+                  <div className="flex items-center justify-center h-8 xl:h-12 mb-1">
                     {item.icon ? (
                       item.icon
                     ) : (
                       <span
-                        className="text-[22px] font-bold "
-                        style={{ color: "rgb(199, 199, 204)" }}
+                        className={`text-[22px] xl:text-[28px] font-bold ${
+                          isDark ? "text-[#EBEBF599]" : "text-black"
+                        }`}
                       >
                         {item.textValue}
                       </span>
                     )}
                   </div>
                   <div
-                    className="text-[11px] truncate max-w-[100px]"
-                    style={{ color: "rgba(235, 235, 245, 0.6)" }}
+                    className={`text-[11px] xl:text-[20px] truncate xl:font-normal max-w-[100px] xl:max-w-[200px] ${
+                      isDark ? "text-[#EBEBF599]" : "text-black"
+                    }`}
                   >
                     {item.subLabel || item.value}
                   </div>
