@@ -25,6 +25,13 @@ function App() {
       /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
       "ontouchstart" in window ||
       navigator.maxTouchPoints > 0;
+    
+    // Skip ScrollSmoother on mobile app detail pages to allow native horizontal scrolling
+    const isAppDetailPage = location.pathname.includes("/mobileApps/") && !location.pathname.endsWith("/mobileApps");
+    if (isAppDetailPage) {
+      return;
+    }
+    
     const smoother = ScrollSmoother.create({
       wrapper: "#wrapper",
       content: "#inner-content",
@@ -37,7 +44,7 @@ function App() {
       smoother.kill();
       ScrollTrigger.refresh();
     };
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

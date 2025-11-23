@@ -25,8 +25,8 @@ const Main = ({ appname }: { appname: string | undefined }) => {
 
   const handleShare = () => {
     const shareData = {
-      title: "My Portfolio",
-      text: "Check out my portfolio!",
+      title: "Adithya Kiran's Portfolio",
+      text: "Check out Adithya kiran's portfolio!",
       url: "https://portfolio-rouge-six-85.vercel.app/",
     };
 
@@ -45,11 +45,11 @@ const Main = ({ appname }: { appname: string | undefined }) => {
             <div className="h-full mx-7 w-screen flex items-center flex-row gap-4">
               <img src={img} className="h-30 w-auto" alt="" />
               <div className="flex flex-col items-start justify-center h-32 mt-[12px]">
-                <h1 className="text-white text-[17px] font-sans font-semibold leading-tight">
+                <h1 className="text-white text-[17px] w-[80%] font-sans font-semibold leading-tight">
                   {data.fullName}
                 </h1>
                 <p
-                  className="text-white text-[13px] font-sans mt-1"
+                  className="text-white text-[13px] font-sans w-[80%] mt-1"
                   style={{ color: "rgba(245, 245, 245, 0.6)" }}
                 >
                   {data.subtitle}

@@ -63,9 +63,15 @@ const Category = () => {
     <section className="mt-[13px] pt-[13px] select-none text-[13px] font-sans font-[400]">
       <div className="pb-[16px]">
         <ul
-          className="px-[20px] flex m-0 list-none overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-8"
-          style={{ scrollbarWidth: "none" }}
+          className="px-[20px] flex m-0 list-none overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-8 category-scroll"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
         >
+          <style>{`
+            ul.category-scroll::-webkit-scrollbar { display: none; }
+          `}</style>
           {items.map((item, index) => (
             <li
               key={index}

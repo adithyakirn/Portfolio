@@ -16,9 +16,10 @@ const IndividualApps = () => {
       <Category />
       <Images/>
       <About/>
-      <NavLink to={'/'}>
-        <h1 className="text-center my-5 mb-10 cursor-pointer mx-auto">Go Home</h1>
+      <NavLink to={'/mobileApps'} style={{background : 'black', marginBlock : '100px'}}>
+        <h1 className="text-center cursor-pointer mx-auto">Go Back</h1>
       </NavLink>
+      <div className="h-5"></div>
     </>
   );
 };
