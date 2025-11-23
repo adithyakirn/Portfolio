@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const MobileApps = () => {
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
+    <div className="h-screen w-screen flex items-center flex-col gap-6 justify-center">
       <div className="flex flex-row gap-5">
         <Link to={"/mobileApps/roosnest"}>
           <div className=" h-28 w-28 items-center rounded-lg flex-col flex hover:scale-110 transition-all duration-600 ease-in-out cursor-pointer">
@@ -22,6 +22,9 @@ const MobileApps = () => {
           </div>
         </Link>
       </div>
+      <NavLink to={"/"}>
+        <h1 className="font-sans text-sm text-gray-200">Go Home</h1>
+      </NavLink>
     </div>
   );
 };
