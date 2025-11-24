@@ -41,7 +41,7 @@ const PreLoader: React.FC<PreLoaderProps> = ({ onFinish }) => {
             exit={{ opacity: 0 }}
             transition={{
               opacity: { duration: 0.5 },
-              delay: 0,
+              delay: 0.5,
             }}
             className={`text-2xl md:text-3xl font-bold text-center uppercase tracking-wider ${
               isDarkTheme ? "text-[#F28F3C]" : "text-[#FF381E]"

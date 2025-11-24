@@ -37,6 +37,8 @@ const IProjects = () => {
 
     let ctx: gsap.Context | null = null;
     let timeoutId: NodeJS.Timeout | null = null;
+    let refreshTimeout1: NodeJS.Timeout | null = null;
+    let refreshTimeout2: NodeJS.Timeout | null = null;
 
     const initScrollTrigger = () => {
       ctx = gsap.context(() => {
@@ -74,30 +76,56 @@ const IProjects = () => {
         });
       });
 
-      // Force refresh after initialization to ensure accurate calculations
-      ScrollTrigger.refresh();
+      // Force refresh after initialization
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
     };
 
-    // Initialize after a brief delay to ensure layout is settled
-    timeoutId = setTimeout(() => {
-      initScrollTrigger();
-    }, 100);
+    // Wait for fonts to load before initializing (critical for production)
+    const initWhenReady = async () => {
+      // Check if fonts are loaded
+      if (document.fonts) {
+        await document.fonts.ready;
+      }
+
+      // Give extra time for layout to settle (increased for Vercel)
+      timeoutId = setTimeout(() => {
+        initScrollTrigger();
+
+        // Additional refreshes at intervals to catch any late-loading content
+        refreshTimeout1 = setTimeout(() => ScrollTrigger.refresh(), 50);
+        refreshTimeout2 = setTimeout(() => ScrollTrigger.refresh(), 100);
+      }, 50); // Increased from 100ms to 300ms
+    };
+
+    initWhenReady();
 
     // Refresh ScrollTrigger when window fully loads
     const handleLoad = () => {
+      setTimeout(() => ScrollTrigger.refresh(), 50);
+    };
+
+    // Refresh on resize (helps with any layout shifts)
+    const handleResize = () => {
       ScrollTrigger.refresh();
     };
 
-    // If page already loaded, refresh immediately
+    // If page already loaded, do extra refresh
     if (document.readyState === "complete") {
-      setTimeout(() => ScrollTrigger.refresh(), 150);
+      setTimeout(() => ScrollTrigger.refresh(), 50);
     } else {
       window.addEventListener("load", handleLoad);
     }
 
+    window.addEventListener("resize", handleResize);
+
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
+      if (refreshTimeout1) clearTimeout(refreshTimeout1);
+      if (refreshTimeout2) clearTimeout(refreshTimeout2);
       window.removeEventListener("load", handleLoad);
+      window.removeEventListener("resize", handleResize);
       if (ctx) ctx.revert();
     };
   }, [res]);
