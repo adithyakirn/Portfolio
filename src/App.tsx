@@ -21,8 +21,19 @@ function App() {
   const isDark = theme === "dark";
   const [isLoading, setIsLoading] = useState(true);
 
+  // Reset scroll position on mount to prevent loading at wrong position
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+    // Don't initialize ScrollSmoother until after loading is complete
+    if (isLoading) {
+      return;
+    }
+
     const isMobile =
       /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
       "ontouchstart" in window ||
@@ -36,19 +47,26 @@ function App() {
       return;
     }
 
-    const smoother = ScrollSmoother.create({
-      wrapper: "#wrapper",
-      content: "#inner-content",
-      smooth: isMobile ? 1 : 1.5,
-      normalizeScroll: isMobile,
-      ignoreMobileResize: true,
-    });
+    // Small delay to ensure DOM is ready
+    const initTimeout = setTimeout(() => {
+      const smoother = ScrollSmoother.create({
+        wrapper: "#wrapper",
+        content: "#inner-content",
+        smooth: isMobile ? 1 : 1.5,
+        normalizeScroll: isMobile,
+        ignoreMobileResize: true,
+      });
+
+      // Refresh ScrollTrigger to recalculate positions
+      ScrollTrigger.refresh();
+    }, 100);
 
     return () => {
-      smoother.kill();
+      clearTimeout(initTimeout);
+      ScrollSmoother.get()?.kill();
       ScrollTrigger.refresh();
     };
-  }, [location.pathname]);
+  }, [location.pathname, isLoading]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

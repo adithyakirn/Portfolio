@@ -26,6 +26,8 @@ const PreLoader: React.FC<PreLoaderProps> = ({ onFinish }) => {
       // Wait for minimum display time if page loaded too quickly
       setTimeout(() => {
         hasLoaded = true;
+        // Ensure scroll is at top before hiding loader
+        window.scrollTo(0, 0);
         setShowLoader(false);
       }, remainingTime);
     };
