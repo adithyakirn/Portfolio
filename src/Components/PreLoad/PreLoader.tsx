@@ -15,8 +15,31 @@ const PreLoader: React.FC<PreLoaderProps> = ({ onFinish }) => {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowLoader(false), 2500);
-    return () => clearTimeout(timer);
+    let hasLoaded = false;
+    const minDisplayTime = 1500; // Minimum time to show loader for UX
+    const startTime = Date.now();
+
+    const handleLoad = () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+
+      // Wait for minimum display time if page loaded too quickly
+      setTimeout(() => {
+        hasLoaded = true;
+        setShowLoader(false);
+      }, remainingTime);
+    };
+
+    // Check if page is already loaded
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+    }
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
   }, []);
 
   return (
