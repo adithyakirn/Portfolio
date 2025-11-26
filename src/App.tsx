@@ -22,6 +22,26 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollTriggerReady, setScrollTriggerReady] = useState(false);
 
+  // Force scroll and reload on first load to fix ScrollTrigger positioning
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+
+    if (!hasReloaded && location.pathname === "/") {
+      // Mark that we're about to reload
+      sessionStorage.setItem("hasReloaded", "true");
+
+      // Scroll a bit to trigger layout calculations
+      window.scrollTo(0, 100);
+
+      // Reload immediately
+      setTimeout(() => {
+        window.location.reload();
+      }, 50);
+
+      return;
+    }
+  }, [location.pathname]);
+
   // Reset scroll position on mount to prevent loading at wrong position
   useEffect(() => {
     window.scrollTo(0, 0);
