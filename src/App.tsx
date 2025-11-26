@@ -22,30 +22,18 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollTriggerReady, setScrollTriggerReady] = useState(false);
 
-  // Force scroll and reload on first load to fix ScrollTrigger positioning
+  // Prevent browser from restoring scroll position (fixes Vercel/Netlify issue)
   useEffect(() => {
-    const hasReloaded = sessionStorage.getItem("hasReloaded");
-
-    if (!hasReloaded && location.pathname === "/") {
-      // Mark that we're about to reload
-      sessionStorage.setItem("hasReloaded", "true");
-
-      // Scroll a bit to trigger layout calculations
-      window.scrollTo(0, 100);
-
-      // Reload immediately
-      setTimeout(() => {
-        window.location.reload();
-      }, 50);
-
-      return;
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
     }
-  }, [location.pathname]);
-
-  // Reset scroll position on mount to prevent loading at wrong position
-  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Reset scroll on route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -63,7 +51,7 @@ function App() {
       return;
     }
 
-    // Small delay to ensure DOM is ready
+    // Delay to ensure DOM is ready (longer delay for production environments)
     const initTimeout = setTimeout(() => {
       const smoother = ScrollSmoother.create({
         wrapper: "#wrapper",
@@ -78,7 +66,7 @@ function App() {
 
       // Signal that ScrollTrigger is ready
       setScrollTriggerReady(true);
-    }, 100);
+    }, 300);
 
     return () => {
       clearTimeout(initTimeout);
