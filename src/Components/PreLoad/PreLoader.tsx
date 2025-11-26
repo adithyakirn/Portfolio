@@ -4,9 +4,13 @@ import { useTheme } from "../Context/Context";
 
 interface PreLoaderProps {
   onFinish: () => void;
+  scrollTriggerReady: boolean;
 }
 
-const PreLoader: React.FC<PreLoaderProps> = ({ onFinish }) => {
+const PreLoader: React.FC<PreLoaderProps> = ({
+  onFinish,
+  scrollTriggerReady,
+}) => {
   const isDarkTheme = useTheme() === "dark";
   const [showLoader, setShowLoader] = useState(true);
 
@@ -15,34 +19,33 @@ const PreLoader: React.FC<PreLoaderProps> = ({ onFinish }) => {
   }, []);
 
   useEffect(() => {
-    let hasLoaded = false;
     const minDisplayTime = 1500; // Minimum time to show loader for UX
     const startTime = Date.now();
 
-    const handleLoad = () => {
+    const handleHide = () => {
       const elapsedTime = Date.now() - startTime;
       const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
 
-      // Wait for minimum display time if page loaded too quickly
+      // Wait for minimum display time if ready too quickly
       setTimeout(() => {
-        hasLoaded = true;
         // Ensure scroll is at top before hiding loader
         window.scrollTo(0, 0);
         setShowLoader(false);
       }, remainingTime);
     };
 
-    // Check if page is already loaded
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
+    // Wait for both DOM content loaded AND ScrollTrigger ready
+    if (scrollTriggerReady) {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", handleHide);
+        return () => {
+          document.removeEventListener("DOMContentLoaded", handleHide);
+        };
+      } else {
+        handleHide();
+      }
     }
-
-    return () => {
-      window.removeEventListener("load", handleLoad);
-    };
-  }, []);
+  }, [scrollTriggerReady]);
 
   return (
     <AnimatePresence

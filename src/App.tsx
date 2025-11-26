@@ -20,6 +20,7 @@ function App() {
   const theme = useTheme();
   const isDark = theme === "dark";
   const [isLoading, setIsLoading] = useState(true);
+  const [scrollTriggerReady, setScrollTriggerReady] = useState(false);
 
   // Reset scroll position on mount to prevent loading at wrong position
   useEffect(() => {
@@ -28,11 +29,6 @@ function App() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-    // Don't initialize ScrollSmoother until after loading is complete
-    if (isLoading) {
-      return;
-    }
 
     const isMobile =
       /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
@@ -59,6 +55,9 @@ function App() {
 
       // Refresh ScrollTrigger to recalculate positions
       ScrollTrigger.refresh();
+
+      // Signal that ScrollTrigger is ready
+      setScrollTriggerReady(true);
     }, 100);
 
     return () => {
@@ -66,7 +65,7 @@ function App() {
       ScrollSmoother.get()?.kill();
       ScrollTrigger.refresh();
     };
-  }, [location.pathname, isLoading]);
+  }, [location.pathname]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -87,7 +86,12 @@ function App() {
 
   return (
     <>
-      {isLoading && <PreLoader onFinish={() => setIsLoading(false)} />}
+      {isLoading && (
+        <PreLoader
+          onFinish={() => setIsLoading(false)}
+          scrollTriggerReady={scrollTriggerReady}
+        />
+      )}
       <div
         id="wrapper"
         className={`${isDark ? "bg-[#0a0a0a]" : "bg-[#fafafa]"}
