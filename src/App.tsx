@@ -10,7 +10,7 @@ import LetsTalk from "./Components/LetsTalk/LetsTalk";
 import Error404 from "./Components/Error/Error";
 
 import PageTransition from "./Components/Transition/PageTransition";
-import { useTheme } from "./Components/Context/Context";
+import { usePortfolioData, useTheme } from "./Components/Context/Context";
 import MobileApps from "./Components/MobileApps/MobileApps";
 import IndividualApps from "./Components/MobileApps/IndividualApps";
 import PreLoader from "./Components/PreLoad/PreLoader";
@@ -18,6 +18,7 @@ import PreLoader from "./Components/PreLoad/PreLoader";
 function App() {
   const location = useLocation();
   const theme = useTheme();
+  const { isPortfolioReady } = usePortfolioData();
   const isDark = theme === "dark";
   const [isLoading, setIsLoading] = useState(true);
   const [scrollTriggerReady, setScrollTriggerReady] = useState(false);
@@ -97,7 +98,7 @@ function App() {
       {isLoading && (
         <PreLoader
           onFinish={() => setIsLoading(false)}
-          scrollTriggerReady={scrollTriggerReady}
+          scrollTriggerReady={scrollTriggerReady && isPortfolioReady}
         />
       )}
       <div

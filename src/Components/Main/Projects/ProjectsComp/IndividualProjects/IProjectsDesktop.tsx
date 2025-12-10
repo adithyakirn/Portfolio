@@ -1,35 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useTheme } from "../../../../Context/Context";
-
-type PortfolioJson = {
-  id: number;
-  projectname: string;
-  languages: string[];
-  status: string;
-  year: number;
-  link: string;
-  about: string;
-};
+import { usePortfolioData, useTheme } from "../../../../Context/Context";
 
 const IProjects = () => {
   const theme = useTheme();
   const isDark = theme === "dark";
-  const [res, setRes] = useState<PortfolioJson[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetch("/JSON/Portfolio.json");
-        const response = await data.json();
-        setRes(response.Project_Details);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const { portfolioData: res } = usePortfolioData();
 
   useEffect(() => {
     if (!res.length) return;
