@@ -30,8 +30,8 @@ const Projects = () => {
             Selected Works / 2025 — Present
           </div>
         </div>
-        <div className="projects-container mb-20 flex w-ful">
-          {isDesktop ? <IProjectsDesktop /> : <IProjectsMobile />}
+        <div className="projects-container mb-20 flex w-full">
+          <IProjectsDesktop />
         </div>
       </div>
     </section>

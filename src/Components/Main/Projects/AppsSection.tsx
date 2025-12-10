@@ -30,7 +30,7 @@ const AppsSection = () => {
           </div>
         </div>
         <div className="projects-container mb-20 flex w-full overflow-x-hidden">
-          {isDesktop ? <IAppProjects /> : <IAppProjectsMobile />}
+          <IAppProjects />
         </div>
       </div>
     </section>

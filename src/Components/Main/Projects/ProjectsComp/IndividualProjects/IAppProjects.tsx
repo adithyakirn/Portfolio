@@ -115,7 +115,7 @@ const Card = ({
 }: any) => {
   return (
     <div
-      className={`relative min-w-[60vw] md:min-w-[40vw] h-[50vh] snap-center transition-all duration-500 ease-in-out ${
+      className={`relative min-w-[85vw] md:min-w-[40vw] h-[45vh] snap-center transition-all duration-500 ease-in-out ${
         isActive
           ? "scale-110 z-20 opacity-100"
           : "scale-90 z-10 opacity-50 blur-[1px]"
@@ -130,7 +130,7 @@ const Card = ({
           <span className="text-[10px] font-bold text-[#555] tracking-[2px]">
             {year}
           </span>
-          <span className="text-[8px] font-bold tracking-[1px] uppercase p-[2px_6px] border-1 text-[#3DA9FC] border-[#3DA9FC] bg-[#3DA9FC20] line-clamp-1 max-w-[50%]">
+          <span className="text-[8px] font-bold tracking-[1px] uppercase p-[2px_6px] border-1 text-[#3DA9FC] border-[#3DA9FC] bg-[#3DA9FC20]  max-w-[50%]">
             {status}
           </span>
         </div>
@@ -141,27 +141,20 @@ const Card = ({
         >
           {projectname}
         </h3>
-        <p className="project-description text-xs text-[#ccc] leading-[1.7] mb-auto">
+        <p className="project-description text-xs text-[#ccc] leading-[1.7] line-clamp-6 mb-6">
           {about}
         </p>
 
-        <div
-          className="relative w-full h-[50%] overflow-hidden rounded-md group cursor-pointer mt-4 border border-white/5 flex items-center justify-center bg-white/5"
+        <button
           onClick={() => navigate(link)}
+          className={`mt-auto px-6 py-3 border ${
+            isDark
+              ? "border-white/20 text-white hover:bg-white/5"
+              : "border-black/20 text-black hover:bg-black/5"
+          } rounded-full text-xs font-bold uppercase tracking-widest transition-all w-fit`}
         >
-          <div className="absolute top-0 left-0 w-full h-full opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 z-50 flex items-center justify-center bg-black/50">
-            <span className="text-white text-sm font-bold tracking-widest uppercase">
-              View Details
-            </span>
-          </div>
-          <span
-            className={`text-2xl font-bold uppercase tracking-widest ${
-              isDark ? "text-white/20" : "text-black/20"
-            }`}
-          >
-            Preview Coming soon
-          </span>
-        </div>
+          View App
+        </button>
       </div>
     </div>
   );

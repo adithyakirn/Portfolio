@@ -6,74 +6,76 @@ const IProjects = () => {
   const { portfolioData: res } = usePortfolioData();
 
   return (
-    <div
-      className="project-scroll-inner relative"
-      style={{ height: `${res.length * 100}vh` }}
-    >
+    <div className="flex flex-col gap-[80px] w-full px-5 py-20">
       {res.map((el) => (
-        <div className="panels min-h-screen" key={el.id}>
-          <div
-            className="relative group h-100 cursor-pointer"
-            onClick={() => window.open(el.link, "_blank")}
-          >
-            <div
-              className={`project-card group-hover:blur-sm relative z-10 rounded-[5px] border-1 focus-visible:outline-[-webkit-focus-ring-color_auto_1px] hover:-translate-y-[5px] hover:border-[#333] border-solid border-[rgba(255,255,255,0.05)] ${
-                isDark
-                  ? "bg-[#121212]"
-                  : "bg-[white] border-[rgba(0_0_0_0_0.2)] shadow-[0_0_30px_10px_rgb(0_0_000/0.2)]"
-              } before:blur-lg p-10 transition-all duration-400 ease-in-out before:content-[''] before:absolute before:top-0 before:-left-[100%] w-full before:h-[2px] before:bg-[linear-gradient(90deg,transparent,#fff,transparent)] before:transition-all before:duration-600 before:ease-in-out h-full`}
+        <div className="w-full relative" key={el.id}>
+          <div className="w-full h-full flex flex-col gap-4">
+            <h3
+              className={`text-[clamp(30px,5vw,60px)] font-bold uppercase ${
+                isDark ? "text-white" : "text-black"
+              } leading-[0.9]`}
             >
-              <div className="project-meta flex justify-between items-center mb-5">
-                <div className="projectyear text-[10px] font-bold text-[#555] tracking-[2px] ">
-                  {el.year}
-                </div>
-                <p
-                  className={`project-status text-[8px] font-bold tracking-[1px] uppercase p-[4px_8px] border-1 ${
-                    el.status.toLowerCase() === "in progress"
-                      ? "text-[#E3B341] border-[#E3B341] bg-[#E3B34120]"
-                      : el.status.toLowerCase() === "ui/ux"
-                      ? "text-[#00BFCF] border-[#00BFCF] bg-[#00BFCF20]"
-                      : el.status.toLowerCase() === "visual & functional"
-                      ? "text-[#A970FF] border-[#A970FF] bg-[#A970FF20]"
-                      : el.status.toLowerCase() === "logic-based"
-                      ? "text-[#3DA9FC] border-[#3DA9FC] bg-[#3DA9FC20]"
-                      : "text-[#32CD32] border-[#32CD32] bg-[#32CD3220]"
-                  }`}
-                >
-                  {el.status}
-                </p>
-              </div>
-              <h3
-                className={`project-title text-[22px] font-bold uppercase tracking-[1px] mb-[16px] ${
-                  isDark ? "text-white" : "text-black"
+              {el.projectname}
+            </h3>
+
+            <div className="flex gap-4 items-center">
+              <span className="text-[12px] font-bold text-[#555] tracking-[2px]">
+                {el.year}
+              </span>
+              <div
+                className={`h-[1px] w-[30px] ${
+                  isDark ? "bg-white/20" : "bg-black/20"
+                }`}
+              ></div>
+              <p
+                className={`text-[10px] font-bold tracking-[1px] uppercase p-[2px_6px] border-1 ${
+                  el.status.toLowerCase() === "in progress"
+                    ? "text-[#E3B341] border-[#E3B341] bg-[#E3B34120]"
+                    : el.status.toLowerCase() === "ui/ux"
+                    ? "text-[#00BFCF] border-[#00BFCF] bg-[#00BFCF20]"
+                    : el.status.toLowerCase() === "visual & functional"
+                    ? "text-[#A970FF] border-[#A970FF] bg-[#A970FF20]"
+                    : el.status.toLowerCase() === "logic-based"
+                    ? "text-[#3DA9FC] border-[#3DA9FC] bg-[#3DA9FC20]"
+                    : "text-[#32CD32] border-[#32CD32] bg-[#32CD3220]"
                 }`}
               >
-                {el.projectname}
-              </h3>
-              <p className="project-description text-[12px] text-[#ccc] leading-[1.7] mb-[24px] ">
-                {el.about}
+                {el.status}
               </p>
-              <div className="project-tech flex flex-wrap gap-[8px] ">
-                {el.languages.map((lang, index) => (
-                  <span
-                    key={`${el.id}-${lang}-${index}`}
-                    className="tech-tag text-[9px] font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]"
-                  >
-                    {lang}
-                  </span>
-                ))}
-              </div>
             </div>
-            <div className="absolute top-0 left-0 z-50 w-full h-full lg:opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-300 ease-in-out rounded-md !overflow-hidden shadow-lg">
-              <div className="w-[135%] h-[135%] scale-[0.75] origin-top-left">
-                <iframe
-                  src={el.link}
-                  title="preview"
-                  className={`w-full h-full ${isDark && "grayscale"} pointe`}
-                  loading="lazy"
-                />
-              </div>
+
+            <p className="text-[14px] leading-[1.6] text-[#888] line-clamp-4">
+              {el.about}
+            </p>
+
+            <div className="project-tech flex flex-wrap gap-[8px] mt-2">
+              {el.languages.map((lang, index) => (
+                <span
+                  key={`${el.id}-${lang}-${index}`}
+                  className="tech-tag text-[9px] font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]"
+                >
+                  {lang}
+                </span>
+              ))}
             </div>
+
+            <button
+              onClick={() => window.open(el.link, "_blank")}
+              className={`mt-6 px-6 py-3 border ${
+                isDark
+                  ? "border-white/20 text-white hover:bg-white/5"
+                  : "border-black/20 text-black hover:bg-black/5"
+              } rounded-full text-xs font-bold uppercase tracking-widest transition-all w-fit`}
+            >
+              View Project
+            </button>
+
+            {/* Separator */}
+            <div
+              className={`w-full h-[1px] ${
+                isDark ? "bg-white/10" : "bg-black/10"
+              } mt-10`}
+            ></div>
           </div>
         </div>
       ))}

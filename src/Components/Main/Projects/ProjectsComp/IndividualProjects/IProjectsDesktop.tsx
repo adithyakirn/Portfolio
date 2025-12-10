@@ -71,9 +71,11 @@ const Card = ({
   isDark,
   isActive,
 }: any) => {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <div
-      className={`relative min-w-[60vw] md:min-w-[40vw] h-[60vh] snap-center transition-all duration-500 ease-in-out ${
+      className={`relative min-w-[85vw] md:min-w-[40vw] h-[60vh] snap-center transition-all duration-500 ease-in-out ${
         isActive
           ? "scale-110 z-20 opacity-100"
           : "scale-90 z-10 opacity-50 blur-[1px]"
@@ -125,7 +127,6 @@ const Card = ({
           ))}
         </div>
 
-        {/* Iframe / Preview Area */}
         <div
           className="relative w-full h-[50%] overflow-hidden rounded-md group cursor-pointer mt-4"
           onClick={() => window.open(link, "_blank")}
@@ -135,14 +136,36 @@ const Card = ({
               Visit Site
             </span>
           </div>
-          <iframe
-            src={link}
-            title="preview"
-            className={`w-full h-full ${
-              isDark && "grayscale"
-            } object-cover pointer-events-none`}
-            loading="lazy"
-          />
+
+          <div className="w-full h-full relative">
+            <iframe
+              src={link}
+              title="preview"
+              className={`w-full h-full ${
+                isDark && "grayscale"
+              } object-cover pointer-events-none ${
+                isMobile ? "hidden" : "block"
+              }`}
+              loading="lazy"
+            />
+            {isMobile && (
+              <div
+                className={`w-full h-full flex items-center justify-center border ${
+                  isDark
+                    ? "border-white/10 bg-white/5"
+                    : "border-black/10 bg-black/5"
+                }`}
+              >
+                <span
+                  className={`text-[10px] uppercase tracking-widest font-bold ${
+                    isDark ? "text-white/40" : "text-black/40"
+                  }`}
+                >
+                  Click to View
+                </span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
