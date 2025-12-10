@@ -37,6 +37,10 @@ function App() {
   }, [location.pathname]);
 
   useEffect(() => {
+    // Wait for data to be ready before initializing ScrollSmoother
+    // This prevents calculating wrong page height on slower connections
+    if (!isPortfolioReady) return;
+
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
     const isMobile =
@@ -74,7 +78,7 @@ function App() {
       ScrollSmoother.get()?.kill();
       ScrollTrigger.refresh();
     };
-  }, [location.pathname]);
+  }, [location.pathname, isPortfolioReady]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
