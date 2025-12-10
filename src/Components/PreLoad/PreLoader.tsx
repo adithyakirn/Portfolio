@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useTheme } from "../Context/Context";
 
 interface PreLoaderProps {
@@ -7,79 +6,64 @@ interface PreLoaderProps {
   scrollTriggerReady: boolean;
 }
 
-const PreLoader: React.FC<PreLoaderProps> = ({
-  onFinish,
-  scrollTriggerReady,
-}) => {
-  const isDarkTheme = useTheme() === "dark";
-  const [showLoader, setShowLoader] = useState(true);
+const PreLoader = ({ onFinish, scrollTriggerReady }: PreLoaderProps) => {
+  const theme = useTheme();
+  const isDark = theme === "dark";
+  const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-  }, []);
-
-  useEffect(() => {
-    const minDisplayTime = 1500; // Minimum time to show loader for UX
+    // Basic minimum loading time
+    const minLoadTime = 2000;
     const startTime = Date.now();
 
-    const handleHide = () => {
-      const elapsedTime = Date.now() - startTime;
-      const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+    // Prevent scrolling while loader is active
+    document.body.style.overflow = "hidden";
 
-      // Wait for minimum display time if ready too quickly
-      setTimeout(() => {
-        // Ensure scroll is at top before hiding loader
-        window.scrollTo(0, 0);
-        setShowLoader(false);
-      }, remainingTime);
+    const checkReady = () => {
+      const currentTime = Date.now();
+      const elapsedTime = currentTime - startTime;
+      const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+      if (scrollTriggerReady) {
+        setTimeout(() => {
+          setShouldRender(false);
+          // Allow scrolling again
+          document.body.style.overflow = "";
+          window.scrollTo(0, 0);
+          onFinish();
+        }, remainingTime);
+      } else {
+        // If not ready, keep checking
+        setTimeout(checkReady, 100);
+      }
     };
 
-    // Wait for both DOM content loaded AND ScrollTrigger ready
-    if (scrollTriggerReady) {
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", handleHide);
-        return () => {
-          document.removeEventListener("DOMContentLoaded", handleHide);
-        };
-      } else {
-        handleHide();
-      }
-    }
-  }, [scrollTriggerReady]);
+    checkReady();
+
+    // Cleanup function to ensure overflow is reset if component unmounts prematurely
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [scrollTriggerReady, onFinish]);
+
+  if (!shouldRender) return null;
 
   return (
-    <AnimatePresence
-      onExitComplete={() => {
-        document.body.style.overflow = "";
-        onFinish();
-      }}
+    <div
+      className={`fixed top-0 left-0 w-full h-full z-[9999] flex items-center justify-center ${
+        isDark ? "bg-[#0a0a0a]" : "bg-[#fafafa]"
+      }`}
     >
-      {showLoader && (
-        <motion.div
-          className={`fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 ${
-            isDarkTheme ? "bg-black" : "bg-white"
+      <div className="text-center">
+        <h1
+          className={`text-4xl font-bold uppercase tracking-widest ${
+            isDark ? "text-[#F28F3B]" : "text-[#ff391e]"
           }`}
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 2, delay: 0.8 }}
         >
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              opacity: { duration: 0.5 },
-              delay: 0.5,
-            }}
-            className={`text-2xl md:text-3xl font-bold text-center uppercase tracking-wider ${
-              isDarkTheme ? "text-[#F28F3C]" : "text-[#FF381E]"
-            }`}
-          >
-            Good things take a second
-          </motion.h1>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          Good things take a second
+        </h1>
+      </div>
+    </div>
   );
 };
 

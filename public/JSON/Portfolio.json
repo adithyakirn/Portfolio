@@ -1,24 +1,6 @@
 {
   "Project_Details": [
     {
-      "id": 2,
-      "projectname": "Adharsh-Portfolio",
-      "languages": ["Next", "tailwindcss", "typescript"],
-      "status": "visual & functional",
-      "year": 2025,
-      "link": "https://adharsh-portfolio-ruddy.vercel.app/",
-      "about": "Adharsh’s terminal-inspired portfolio built with Next.js and Tailwind CSS. It features a retro CLI interface with typing animations, blinking cursor, and responsive design. Showcases skills, projects, and contact info in a unique, nostalgic way. -exactly a terminal"
-    },
-    {
-      "id": 3,
-      "projectname": "Linear-Clone",
-      "languages": ["Html & Css", "Javascript"],
-      "status": "ui/ux",
-      "year": 2025,
-      "link": "https://linearfullyresponsivesite.netlify.app/",
-      "about": "A responsive clone of Linear.app using HTML and CSS. Designed to closely mirror the original layout and styling."
-    },
-    {
       "id": 4,
       "projectname": "Dribble-Clone",
       "languages": ["Html & Css", "Javascript"],
@@ -27,6 +9,25 @@
       "link": "https://dribblefrontend.netlify.app/",
       "about": "A frontend clone of Dribbble built with HTML, CSS, and JavaScript. Features include a responsive grid layout, interactive shot previews, category filters, and click-based modals—designed to mimic Dribbble’s user experience."
     },
+    {
+      "id": 2,
+      "projectname": "Linear-Clone",
+      "languages": ["Html & Css", "Javascript"],
+      "status": "ui/ux",
+      "year": 2025,
+      "link": "https://linearfullyresponsivesite.netlify.app/",
+      "about": "A responsive clone of Linear.app using HTML and CSS. Designed to closely mirror the original layout and styling."
+    },
+    {
+      "id": 3,
+      "projectname": "Adharsh-Portfolio",
+      "languages": ["Next", "tailwindcss", "typescript"],
+      "status": "visual & functional",
+      "year": 2025,
+      "link": "https://adharsh-portfolio-ruddy.vercel.app/",
+      "about": "Adharsh’s terminal-inspired portfolio built with Next.js and Tailwind CSS. It features a retro CLI interface with typing animations, blinking cursor, and responsive design. Showcases skills, projects, and contact info in a unique, nostalgic way. -exactly a terminal"
+    },
+
     {
       "id": 1,
       "projectname": "Porsche-Frontend",

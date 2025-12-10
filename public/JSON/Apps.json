@@ -10,10 +10,11 @@
     "age": "Everyone",
     "language": "EN",
     "developer": "Adithya Kiran CB",
-    "framework": "React Native",
+    "framework": ["React Native", "TypeScript", "Supabase"],
     "gradient": "linear-gradient(to bottom, rgb(255, 180, 120) 0%, rgb(255, 150, 90) 40%, rgb(255, 120, 70) 70%, rgb(255, 100, 60) 100%)",
     "color": "#ffb580",
     "img": "/roosnest.png",
+    "banner": "",
     "images": [
       "/assets/mockup/RoosNest/homeParents.jpg",
       "/assets/mockup/RoosNest/noticeParents.jpg",
@@ -34,17 +35,45 @@
     "category": "Utilities",
     "age": "Everyone",
     "language": "EN",
-    "developer": "Adithya Kiran CB",
-    "framework": "React Native",
+    "developer": "Adithya Kiran CB , Adharsh CB",
+    "framework": ["React Native", "TypeScript", "Supabase", "Python"],
     "gradient": "linear-gradient(to bottom, rgb(40, 32, 28) 0%, rgb(25, 21, 19) 45%, rgb(15, 12, 11) 100%)",
     "color": "#0f0c0b",
     "img": "/yaskitchen.png",
+    "banner": "",
     "images": [
       "/assets/mockup/YasKitchen/CompleteRegistration.webp",
       "/assets/mockup/YasKitchen/planSelection.webp",
       "/assets/mockup/YasKitchen/review.webp",
       "/assets/mockup/YasKitchen/home.webp",
       "/assets/mockup/YasKitchen/specials.webp"
+    ]
+  },
+
+  "cella": {
+    "name": "Cella",
+    "fullName": "Cella – KTET Teacher & Admin Platform",
+    "subtitle": "Teacher plans, live classes, mock exams & admin CMS",
+    "description": "Cella is a teacher-focused KTET platform where educators subscribe to plans and receive mock exams, live classes, comprehensive notes, and leaderboards for their students. Teachers can join subscription plans, host or attend live classes, assign mock tests, share materials, and track student performance. Administrators use the admin panel to create/manage plans, upload mock exams, schedule live classes, add notes, and configure leaderboards. Built with React Native, TypeScript, and Supabase, Cella provides a secure, fast, and easy-to-manage experience across iOS, Android, and Web.",
+    "pricing": "Free · Subscription Plans",
+    "platform": "iOS · Android · Web",
+    "category": "Education",
+    "age": "Everyone",
+    "language": "EN",
+    "developer": "Adithya Kiran CB",
+    "framework": ["React Native", "TypeScript", "Supabase"],
+    "gradient": "linear-gradient(to bottom, rgb(176, 182, 250) 0%, rgb(214, 203, 255) 40%, rgb(221, 214, 254) 70%, rgb(240, 238, 255) 100%)",
+    "color": "#B0B6FA",
+    "img": "/cella.jpg",
+    "banner": "",
+    "images": [
+      "/assets/mockup/Cella/planSelection.webp",
+      "/assets/mockup/Cella/teacherDashboard.webp",
+      "/assets/mockup/Cella/liveClass.webp",
+      "/assets/mockup/Cella/mockExamList.webp",
+      "/assets/mockup/Cella/notesLibrary.webp",
+      "/assets/mockup/Cella/leaderboard.webp",
+      "/assets/mockup/Cella/adminPanel.webp"
     ]
   }
 }

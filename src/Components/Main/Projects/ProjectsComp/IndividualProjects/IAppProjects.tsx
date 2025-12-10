@@ -1,18 +1,58 @@
 import { useEffect, useRef, useState } from "react";
-import { usePortfolioData, useTheme } from "../../../../Context/Context";
+import { useNavigate } from "react-router";
+import { useTheme } from "../../../../Context/Context";
 
-const IProjectsDesktop = () => {
+type ProjectData = {
+  id: string;
+  projectname: string;
+  languages: string[];
+  status: string;
+  year: number;
+  link: string;
+  about: string;
+};
+
+const IAppProjects = () => {
   const theme = useTheme();
   const isDark = theme === "dark";
-  const { portfolioData: res } = usePortfolioData();
+  const [appsData, setAppsData] = useState<ProjectData[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetch("/JSON/Apps.json");
+        if (!data.ok) {
+          throw new Error(`HTTP error! status: ${data.status}`);
+        }
+        const response = await data.json();
+
+        const mappedData: ProjectData[] = Object.entries(response).map(
+          ([key, value]: [string, any]) => ({
+            id: key,
+            projectname: value.name,
+            languages: [value.framework],
+            status: value.subtitle,
+            year: 2025,
+            link: `/mobileApps/${key}`,
+            about: value.description,
+          })
+        );
+
+        setAppsData(mappedData);
+      } catch (error) {
+        console.log("Error fetching apps data", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleScroll = () => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const center = container.scrollLeft + container.clientWidth / 2;
-    // Find the child that is closest to the center
     const children = Array.from(container.children) as HTMLElement[];
     let closestIndex = 0;
     let minDistance = Infinity;
@@ -35,13 +75,14 @@ const IProjectsDesktop = () => {
     const container = containerRef.current;
     if (container) {
       container.addEventListener("scroll", handleScroll);
-      // Initial check
       handleScroll();
     }
     return () => {
       if (container) container.removeEventListener("scroll", handleScroll);
     };
-  }, [activeIndex]);
+  }, [activeIndex, appsData]);
+
+  if (!appsData.length) return null;
 
   return (
     <div
@@ -49,12 +90,13 @@ const IProjectsDesktop = () => {
       className="w-full flex overflow-x-auto snap-x snap-mandatory no-scrollbar py-20 px-[50vw] gap-0 items-center"
       style={{ scrollBehavior: "smooth" }}
     >
-      {res.map((el, index) => (
+      {appsData.map((el, index) => (
         <Card
           key={el.id}
           {...el}
           isDark={isDark}
           isActive={index === activeIndex}
+          navigate={navigate}
         />
       ))}
     </div>
@@ -67,13 +109,13 @@ const Card = ({
   status,
   link,
   about,
-  languages,
   isDark,
   isActive,
+  navigate,
 }: any) => {
   return (
     <div
-      className={`relative min-w-[60vw] md:min-w-[40vw] h-[60vh] snap-center transition-all duration-500 ease-in-out ${
+      className={`relative min-w-[60vw] md:min-w-[40vw] h-[50vh] snap-center transition-all duration-500 ease-in-out ${
         isActive
           ? "scale-110 z-20 opacity-100"
           : "scale-90 z-10 opacity-50 blur-[1px]"
@@ -85,68 +127,44 @@ const Card = ({
         } p-8 transition-all duration-400 ease-in-out flex flex-col overflow-hidden`}
       >
         <div className="project-meta flex justify-between items-center mb-5">
-          <div className="projectyear text-[10px] font-bold text-[#555] tracking-[2px] ">
+          <span className="text-[10px] font-bold text-[#555] tracking-[2px]">
             {year}
-          </div>
-          <p
-            className={`project-status text-[8px] font-bold tracking-[1px] uppercase p-[4px_8px] border-1 ${
-              status.toLowerCase() === "in progress"
-                ? "text-[#E3B341] border-[#E3B341] bg-[#E3B34120]"
-                : status.toLowerCase() === "ui/ux"
-                ? "text-[#00BFCF] border-[#00BFCF] bg-[#00BFCF20]"
-                : status.toLowerCase() === "visual & functional"
-                ? "text-[#A970FF] border-[#A970FF] bg-[#A970FF20]"
-                : status.toLowerCase() === "logic-based"
-                ? "text-[#3DA9FC] border-[#3DA9FC] bg-[#3DA9FC20]"
-                : "text-[#32CD32] border-[#32CD32] bg-[#32CD3220]"
-            }`}
-          >
+          </span>
+          <span className="text-[8px] font-bold tracking-[1px] uppercase p-[2px_6px] border-1 text-[#3DA9FC] border-[#3DA9FC] bg-[#3DA9FC20] line-clamp-1 max-w-[50%]">
             {status}
-          </p>
+          </span>
         </div>
         <h3
-          className={`project-title text-[22px] font-bold uppercase tracking-[1px] mb-[16px] ${
+          className={`project-title text-[20px] font-bold uppercase tracking-[1px] mb-[10px] ${
             isDark ? "text-white" : "text-black"
           }`}
         >
           {projectname}
         </h3>
-        <p className="project-description text-[12px] text-[#ccc] leading-[1.7] mb-[24px] line-clamp-3">
+        <p className="project-description text-xs text-[#ccc] leading-[1.7] mb-auto">
           {about}
         </p>
-        <div className="project-tech flex flex-wrap gap-[8px] mb-auto">
-          {languages.map((lang: string, index: number) => (
-            <span
-              key={`${lang}-${index}`}
-              className="tech-tag text-[9px] font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]"
-            >
-              {lang}
-            </span>
-          ))}
-        </div>
 
-        {/* Iframe / Preview Area */}
         <div
-          className="relative w-full h-[50%] overflow-hidden rounded-md group cursor-pointer mt-4"
-          onClick={() => window.open(link, "_blank")}
+          className="relative w-full h-[50%] overflow-hidden rounded-md group cursor-pointer mt-4 border border-white/5 flex items-center justify-center bg-white/5"
+          onClick={() => navigate(link)}
         >
           <div className="absolute top-0 left-0 w-full h-full opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 z-50 flex items-center justify-center bg-black/50">
             <span className="text-white text-sm font-bold tracking-widest uppercase">
-              Visit Site
+              View Details
             </span>
           </div>
-          <iframe
-            src={link}
-            title="preview"
-            className={`w-full h-full ${
-              isDark && "grayscale"
-            } object-cover pointer-events-none`}
-            loading="lazy"
-          />
+          <span
+            className={`text-2xl font-bold uppercase tracking-widest ${
+              isDark ? "text-white/20" : "text-black/20"
+            }`}
+          >
+            Preview Coming soon
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export default IProjectsDesktop;
+export default IAppProjects;

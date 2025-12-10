@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from "react";
-import apps from "../../data/Apps.json";
-
-const Main = ({ appname }: { appname: string | undefined }) => {
+const Main = ({ data }: { data: any }) => {
   const [bgColor, setBgColor] = useState("");
   const [color, setClr] = useState("");
   const [img, setImg] = useState("");
-  const [data, setData] = useState({
-    fullName: "",
-    subtitle: "",
-    pricing: "",
-    color: "",
-    gradient: "",
-    img: "",
-  });
 
   useEffect(() => {
-    const safeName = (appname ?? "roosnest") as keyof typeof apps;
-    const data = apps[safeName];
-    setClr(data.color);
-    setBgColor(data.gradient);
-    setImg(data.img);
-    setData(data);
-  }, [appname]);
+    if (data) {
+      setClr(data.color);
+      setBgColor(data.gradient);
+      setImg(data.img);
+    }
+  }, [data]);
 
   const handleShare = () => {
     const shareData = {
@@ -40,10 +29,20 @@ const Main = ({ appname }: { appname: string | undefined }) => {
   return (
     <>
       <div className="h-full w-screen">
-        <section className="h-[200px] lg:h-[300px] xl:h-[400px]  w-full" style={{ background: color }}>
-          <div className="h-[200px] lg:h-[300px] xl:h-[400px] w-full " style={{ background: bgColor }}>
+        <section
+          className="h-[200px] lg:h-[300px] xl:h-[400px]  w-full"
+          style={{ background: color }}
+        >
+          <div
+            className="h-[200px] lg:h-[300px] xl:h-[400px] w-full "
+            style={{ background: bgColor }}
+          >
             <div className="h-full mx-7 w-screen flex items-center flex-row gap-4">
-              <img src={img} className="h-30 w-auto lg:h-[200px] xl:h-[300px]" alt="" />
+              <img
+                src={img}
+                className="h-30 w-auto lg:h-[200px] rounded-4xl xl:h-[300px]"
+                alt=""
+              />
               <div className="flex flex-col items-start justify-center xl:gap-2 h-32 mt-[12px]">
                 <h1 className="text-white text-[17px] w-[80%] lg:w-full lg:text-[38px] xl:text-[] font-sans font-semibold leading-tight">
                   {data.fullName}

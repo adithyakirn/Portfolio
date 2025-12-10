@@ -1,14 +1,8 @@
 import React from "react";
-import { useParams } from "react-router";
-import apps from "../../data/Apps.json";
 import { useTheme } from "../Context/Context";
-
-const About = () => {
+const About = ({ data }: { data: any }) => {
   const theme = useTheme();
   const isDark = theme === "dark";
-  const { appname } = useParams();
-  const safeName = (appname ?? "roosnest") as keyof typeof apps;
-  const data = apps[safeName];
 
   return (
     <div

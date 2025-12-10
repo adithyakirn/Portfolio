@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import { useTheme } from "../../../../Context/Context";
 
 type PortfolioJson = {
@@ -31,114 +29,12 @@ const IProjects = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (!res.length) return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    let ctx: gsap.Context | null = null;
-    let timeoutId: NodeJS.Timeout | null = null;
-    let refreshTimeout1: NodeJS.Timeout | null = null;
-    let refreshTimeout2: NodeJS.Timeout | null = null;
-
-    const initScrollTrigger = () => {
-      ctx = gsap.context(() => {
-        const panels = gsap.utils.toArray<HTMLElement>(".panels");
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#projects-wrapper",
-            start: "top top",
-            end: `+=${res.length * 490}vh`,
-            scrub: true,
-            scroller: "#wrapper",
-          },
-        });
-        panels.forEach((panel, i) => {
-          tl.to(panel, {
-            y: `-${i * (panel.offsetHeight - 50)}px`,
-            filter: "blur(5px)",
-            ease: "power2.out",
-            duration: 8,
-          });
-          tl.to(panel, {
-            filter: "blur(0px)",
-            ease: "power2.inOut",
-            duration: 2,
-          });
-        });
-        ScrollTrigger.create({
-          trigger: "#projects-wrapper",
-          start: "top top",
-          end: `+=${res.length * 500}vh`,
-          pin: true,
-          pinSpacing: true,
-          scroller: "#wrapper",
-        });
-      });
-
-      // Force refresh after initialization
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
-    };
-
-    // Wait for fonts to load before initializing (critical for production)
-    const initWhenReady = async () => {
-      // Check if fonts are loaded
-      if (document.fonts) {
-        await document.fonts.ready;
-      }
-
-      // Give extra time for layout to settle (increased for Vercel)
-      timeoutId = setTimeout(() => {
-        initScrollTrigger();
-
-        // Additional refreshes at intervals to catch any late-loading content
-        refreshTimeout1 = setTimeout(() => ScrollTrigger.refresh(), 50);
-        refreshTimeout2 = setTimeout(() => ScrollTrigger.refresh(), 100);
-      }, 50); // Increased from 100ms to 300ms
-    };
-
-    initWhenReady();
-
-    // Refresh ScrollTrigger when window fully loads
-    const handleLoad = () => {
-      setTimeout(() => ScrollTrigger.refresh(), 50);
-    };
-
-    // Refresh on resize (helps with any layout shifts)
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    // If page already loaded, do extra refresh
-    if (document.readyState === "complete") {
-      setTimeout(() => ScrollTrigger.refresh(), 50);
-    } else {
-      window.addEventListener("load", handleLoad);
-    }
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-      if (refreshTimeout1) clearTimeout(refreshTimeout1);
-      if (refreshTimeout2) clearTimeout(refreshTimeout2);
-      window.removeEventListener("load", handleLoad);
-      window.removeEventListener("resize", handleResize);
-      if (ctx) ctx.revert();
-    };
-  }, [res]);
-
   return (
-    <div
-      className="project-scroll-inner relative"
-      style={{ height: `${res.length * 100}vh` }}
-    >
+    <div className="relative w-full grid grid-cols-1 md:grid-cols-2 gap-10 p-10">
       {res.map((el) => (
-        <div className="panels min-h-screen" key={el.id}>
+        <div className="w-full aspect-square" key={el.id}>
           <div
-            className="relative group h-100 cursor-pointer"
+            className="group w-full h-full cursor-pointer relative"
             onClick={() => window.open(el.link, "_blank")}
           >
             <div
@@ -149,7 +45,7 @@ const IProjects = () => {
               } before:blur-lg p-10 transition-all duration-400 ease-in-out before:content-[''] before:absolute before:top-0 before:-left-[100%] w-full before:h-[2px] before:bg-[linear-gradient(90deg,transparent,#fff,transparent)] before:transition-all before:duration-600 before:ease-in-out h-full`}
             >
               <div className="project-meta flex justify-between items-center mb-5">
-                <div className="projectyear text-[10px] font-bold text-[#555] tracking-[2px] ">
+                <div className="projectyear text-xs font-bold text-[#555] tracking-[2px] ">
                   {el.year}
                 </div>
                 <p
@@ -169,20 +65,20 @@ const IProjects = () => {
                 </p>
               </div>
               <h3
-                className={`project-title text-[22px] font-bold uppercase tracking-[1px] mb-[16px] ${
+                className={`project-title text-3xl font-bold uppercase tracking-[1px] mb-[16px] mt-10 ${
                   isDark ? "text-white" : "text-black"
                 }`}
               >
                 {el.projectname}
               </h3>
-              <p className="project-description text-[12px] text-[#ccc] leading-[1.7] mb-[24px] ">
+              <p className="project-description text-base text-[#ccc] leading-[1.7] mb-[24px] ">
                 {el.about}
               </p>
               <div className="project-tech flex flex-wrap gap-[8px] ">
                 {el.languages.map((lang, index) => (
                   <span
                     key={`${el.id}-${lang}-${index}`}
-                    className="tech-tag text-[9px] font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]"
+                    className="tech-tag text-xs font-bold text-[#666] bg-[rgba(255,255,255,0.05)] border-1 border-solid border-[#2a2a2a] p-[6px_12px] uppercase tracking-[1px]"
                   >
                     {lang}
                   </span>

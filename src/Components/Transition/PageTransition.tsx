@@ -1,19 +1,18 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { ReactNode } from "react";
 
-const PageTransition = ({ children, locationKey }: { children: React.ReactNode; locationKey: string }) => {
+const PageTransition = ({
+  children,
+  locationKey,
+}: {
+  children: ReactNode;
+  locationKey: string;
+}) => {
+  // Debug: Check if key changes on navigation
+  // console.log("PageTransition Key:", locationKey);
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={locationKey}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 40 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        style={{ position: "relative" }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <div key={locationKey} className="animate-page-enter w-full min-h-screen">
+      {children}
+    </div>
   );
 };
 

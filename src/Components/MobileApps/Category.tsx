@@ -1,15 +1,9 @@
 import React from "react";
 import { Briefcase, User, Smartphone } from "lucide-react";
-import apps from "../../data/Apps.json";
-import { useParams } from "react-router";
 import { useTheme } from "../Context/Context";
-
-const Category = () => {
+const Category = ({ data }: { data: any }) => {
   const theme = useTheme();
   const isDark = theme === "dark";
-  const { appname } = useParams();
-  const safeName = (appname ?? "roosnest") as keyof typeof apps;
-  const data = apps[safeName];
   const items = [
     {
       label: "FRAMEWORK",

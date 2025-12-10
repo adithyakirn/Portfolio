@@ -1,7 +1,3 @@
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import ScrollSmoother from "gsap/ScrollSmoother";
-
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import Home from "./Pages/Home";
@@ -21,7 +17,6 @@ function App() {
   const { isPortfolioReady } = usePortfolioData();
   const isDark = theme === "dark";
   const [isLoading, setIsLoading] = useState(true);
-  const [scrollTriggerReady, setScrollTriggerReady] = useState(false);
 
   // Prevent browser from restoring scroll position (fixes Vercel/Netlify issue)
   useEffect(() => {
@@ -35,50 +30,6 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
-
-  useEffect(() => {
-    // Wait for data to be ready before initializing ScrollSmoother
-    // This prevents calculating wrong page height on slower connections
-    if (!isPortfolioReady) return;
-
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-    const isMobile =
-      /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0;
-
-    // Skip ScrollSmoother on mobile app detail pages to allow native horizontal scrolling
-    const isAppDetailPage =
-      location.pathname.includes("/mobileApps/") &&
-      !location.pathname.endsWith("/mobileApps");
-    if (isAppDetailPage) {
-      return;
-    }
-
-    // Delay to ensure DOM is ready (longer delay for production environments)
-    const initTimeout = setTimeout(() => {
-      const smoother = ScrollSmoother.create({
-        wrapper: "#wrapper",
-        content: "#inner-content",
-        smooth: isMobile ? 1 : 1.5,
-        normalizeScroll: isMobile,
-        ignoreMobileResize: true,
-      });
-
-      // Refresh ScrollTrigger to recalculate positions
-      ScrollTrigger.refresh();
-
-      // Signal that ScrollTrigger is ready
-      setScrollTriggerReady(true);
-    }, 300);
-
-    return () => {
-      clearTimeout(initTimeout);
-      ScrollSmoother.get()?.kill();
-      ScrollTrigger.refresh();
-    };
-  }, [location.pathname, isPortfolioReady]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -102,7 +53,7 @@ function App() {
       {isLoading && (
         <PreLoader
           onFinish={() => setIsLoading(false)}
-          scrollTriggerReady={scrollTriggerReady && isPortfolioReady}
+          scrollTriggerReady={isPortfolioReady}
         />
       )}
       <div
