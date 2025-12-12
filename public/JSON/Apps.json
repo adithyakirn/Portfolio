@@ -67,13 +67,11 @@
     "img": "/cella.jpg",
     "banner": "",
     "images": [
-      "/assets/mockup/Cella/planSelection.webp",
-      "/assets/mockup/Cella/teacherDashboard.webp",
-      "/assets/mockup/Cella/liveClass.webp",
-      "/assets/mockup/Cella/mockExamList.webp",
-      "/assets/mockup/Cella/notesLibrary.webp",
-      "/assets/mockup/Cella/leaderboard.webp",
-      "/assets/mockup/Cella/adminPanel.webp"
+      "/assets/mockup/Cella/Login.webp",
+      "/assets/mockup/Cella/Home.webp",
+      "/assets/mockup/Cella/Lessons.webp",
+      "/assets/mockup/Cella/Tests.webp",
+      "/assets/mockup/Cella/Profile.webp"
     ]
   }
 }
