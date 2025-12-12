@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import Home from "./Pages/Home";
 import AllProjects from "./Pages/AllProjects";
@@ -19,7 +19,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Prevent browser from restoring scroll position (fixes Vercel/Netlify issue)
-  useEffect(() => {
+  useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }

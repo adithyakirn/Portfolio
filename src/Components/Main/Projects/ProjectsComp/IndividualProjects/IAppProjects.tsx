@@ -115,7 +115,7 @@ const Card = ({
 }: any) => {
   return (
     <div
-      className={`relative min-w-[85vw] md:min-w-[40vw] h-[45vh] snap-center transition-all duration-500 ease-in-out ${
+      className={`relative min-w-[85vw] md:min-w-[40vw] h-[50vh] lg:h-[38vh] snap-center transition-all duration-500 ease-in-out ${
         isActive
           ? "scale-110 z-20 opacity-100"
           : "scale-90 z-10 opacity-50 blur-[1px]"
@@ -141,7 +141,7 @@ const Card = ({
         >
           {projectname}
         </h3>
-        <p className="project-description text-xs text-[#ccc] leading-[1.7] line-clamp-6 mb-6">
+        <p className="project-description lg:w-[80%] text-xs text-[#ccc] leading-[1.7] lg:line-clamp-10 line-clamp-6 mb-6">
           {about}
         </p>
 
