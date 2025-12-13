@@ -16,13 +16,11 @@
     "img": "/roosnest.png",
     "banner": "",
     "images": [
-      "/assets/mockup/RoosNest/homeParents.jpg",
-      "/assets/mockup/RoosNest/noticeParents.jpg",
-      "/assets/mockup/RoosNest/childDetails.jpg",
-      "/assets/mockup/RoosNest/activityParents.jpg",
-      "/assets/mockup/RoosNest/attendanceParent.jpg",
-      "/assets/mockup/RoosNest/teacherHome.jpg",
-      "/assets/mockup/RoosNest/qr.jpg"
+      "/assets/mockup/RoosNest/getstarted.webp",
+      "/assets/mockup/RoosNest/homeParents.webp",
+      "/assets/mockup/RoosNest/noticeParents.webp",
+      "/assets/mockup/RoosNest/childDetails.webp",
+      "/assets/mockup/RoosNest/attendanceParent.webp"
     ]
   },
   "yaskitchen": {
